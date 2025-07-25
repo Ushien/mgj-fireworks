@@ -19,7 +19,7 @@ namespace ShootingSystem {
         /// <param name="pool">The object pool managing the projectile instances.</param>
         /// <param name="distance">The distance the projectile will travel before returning to the pool.</param>
         /// <param name="startPosition">The starting position of the projectile.</param>
-        /// <param name="targetPosition">The target position the projectile will move towards.</param
+        /// <param name="targetPosition">The target position the projectile will move towards.</param>
         public void Init(float projectileSpeed, float distance, ObjectPool pool, Vector2 startPosition, Vector2 targetPosition)
         {
             this.startPosition = startPosition;
