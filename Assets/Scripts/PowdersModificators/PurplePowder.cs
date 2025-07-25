@@ -14,14 +14,15 @@ public class PurplePowder : PowderModificator
             return;
         }
         ParticleSystem newBurst = Instantiate(subBurst, mainBurst.transform);
+        newBurst.name = "Burst";
         ParticleSystem.SubEmittersModule subEmitters = mainBurst.subEmitters;
         subEmitters.AddSubEmitter(newBurst, ParticleSystemSubEmitterType.Death, ParticleSystemSubEmitterProperties.InheritNothing);
     }
 
     private Transform FindLastBurst(Transform originExplosion)
     {
-        if (originExplosion.transform.Find("Trail") == null) {
-            return originExplosion.transform.Find("Burst").transform;
+        if (originExplosion.transform.Find("Burst") == null) {
+            return originExplosion.transform;
         }
         else {
             return FindLastBurst(originExplosion.transform.Find("Burst").transform);
