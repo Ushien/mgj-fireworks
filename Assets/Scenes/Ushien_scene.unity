@@ -457,7 +457,7 @@ MonoBehaviour:
   shotSound: {fileID: 0}
   audioSource: {fileID: 0}
   powderList:
-  - {fileID: 4025286708628836191, guid: 0256ddcb3f3534a42a090d9571d19e9e, type: 3}
+  - {fileID: 5784449326585124778, guid: 36f83081f3a3bc64d8393fc7d1f462a1, type: 3}
 --- !u!4 &1156001265
 Transform:
   m_ObjectHideFlags: 0

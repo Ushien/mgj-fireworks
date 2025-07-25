@@ -1,0 +1,30 @@
+using UnityEngine;
+
+public class PurplePowder : PowderModificator
+{
+    [SerializeField]
+    private ParticleSystem subBurst;
+    // Rajoute une explosion supplémentaire
+    override public void ApplyModifier()
+    {
+        ParticleSystem mainBurst = FindLastBurst(attachedFirework.transform).GetComponent<ParticleSystem>();
+        if (mainBurst == null || subBurst == null)
+        {
+            Debug.LogWarning("Quelque chose ne se passe pas comme prévu");
+            return;
+        }
+        ParticleSystem newBurst = Instantiate(subBurst, mainBurst.transform);
+        ParticleSystem.SubEmittersModule subEmitters = mainBurst.subEmitters;
+        subEmitters.AddSubEmitter(newBurst, ParticleSystemSubEmitterType.Death, ParticleSystemSubEmitterProperties.InheritNothing);
+    }
+
+    private Transform FindLastBurst(Transform originExplosion)
+    {
+        if (originExplosion.transform.Find("Trail") == null) {
+            return originExplosion.transform.Find("Burst").transform;
+        }
+        else {
+            return FindLastBurst(originExplosion.transform.Find("Burst").transform);
+        }
+    }
+}

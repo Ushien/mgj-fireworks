@@ -1,10 +1,11 @@
 using UnityEngine;
 
-public class RedPowder : PowderModificator
+public class RaibowPowder : PowderModificator
 {
+    // Ajoute un gradiant de couleur arc-en-ciel
     override public void ApplyModifier()
     {
         ParticleSystem.MainModule mm = attachedFirework.GetComponent<ParticleSystem>().main;
-        mm.startColor = new Color((mm.startColor.color.r + 1)/2, mm.startColor.color.g, mm.startColor.color.b); 
+        //
     }
 }
