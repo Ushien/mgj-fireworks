@@ -1,7 +1,7 @@
 using UnityEngine;
 using ParticleSystem = UnityEngine.ParticleSystem;
 
-public class RaimbowPowder : Powder
+public class RaimbowPowder : PowderModificator
 {
     private int firstIndex = 0;
 
@@ -13,7 +13,7 @@ public class RaimbowPowder : Powder
         ParticleSystem.ColorOverLifetimeModule colorOverLifetime = attachedFirework.GetComponent<ParticleSystem>().colorOverLifetime;
         
         Transform burstTransform = attachedFirework.transform.Find("Burst");
-        Transform burstTrailsTransform = attachedFirework.transform.Find("Burst/Burst_Trails");
+        Transform burstTrailsTransform = attachedFirework.transform.Find("Burst/Trails");
         
         ParticleSystem.SubEmittersModule subEmitters = burstTransform.GetComponent<ParticleSystem>().subEmitters;
         ParticleSystem.MainModule burstMainModule = burstTransform.GetComponent<ParticleSystem>().main;
