@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class YellowPowder : PowderModificator
+public class RaibowPowder : PowderModificator
 {
     override public void ApplyModifier()
     {

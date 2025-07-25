@@ -1,7 +1,7 @@
 using ShootingSystem;
 using UnityEngine;
 
-public class Powder : MonoBehaviour
+public class PowderModificator : MonoBehaviour
 {
     public FireworkProjectile attachedFirework;
     public virtual void ApplyModifier()
