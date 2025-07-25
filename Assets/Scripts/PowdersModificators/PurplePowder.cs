@@ -13,10 +13,22 @@ public class PurplePowder : PowderModificator
             Debug.LogWarning("Quelque chose ne se passe pas comme prévu");
             return;
         }
+
+        /*
+        ParticleSystem.EmissionModule em = attachedFirework.transform.Find("Burst").GetComponent<ParticleSystem>().emission;
+        em.burstCount = 15;
+        mm.scalingMode = ParticleSystemScalingMode.Hierarchy;
+        */
+
         ParticleSystem newBurst = Instantiate(subBurst, mainBurst.transform);
         newBurst.name = "Burst";
         ParticleSystem.SubEmittersModule subEmitters = mainBurst.subEmitters;
         subEmitters.AddSubEmitter(newBurst, ParticleSystemSubEmitterType.Death, ParticleSystemSubEmitterProperties.InheritNothing);
+
+        ParticleSystem.MainModule mm = newBurst.transform.Find("Trails").GetComponent<ParticleSystem>().main;
+        mm.startSize = newBurst.transform.parent.Find("Trails").GetComponent<ParticleSystem>().main.startSize.constant / 2f;
+        mm = newBurst.GetComponent<ParticleSystem>().main;
+        mm.startSize = newBurst.transform.parent.GetComponent<ParticleSystem>().main.startSize.constant/2f;
     }
 
     private Transform FindLastBurst(Transform originExplosion)
