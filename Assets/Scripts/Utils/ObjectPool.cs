@@ -36,8 +36,10 @@ namespace Utils {
             }
         }
 
-        public void ReturnObject(GameObject obj)
+        public void ReturnObject(GameObject obj_to_Delete)
         {
+            Destroy(obj_to_Delete);
+            GameObject obj = Instantiate(prefab);
             obj.SetActive(false);
             pool.Enqueue(obj);
         }
