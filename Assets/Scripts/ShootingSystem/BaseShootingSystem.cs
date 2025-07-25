@@ -9,7 +9,7 @@ namespace ShootingSystem {
         [SerializeField] private Transform projectileSpawnPoint; /// Spawn point for the projectiles.
         [SerializeField] private AudioClip shotSound; /// Sound played when a projectile is shot.
         [SerializeField] private AudioSource audioSource; /// Audio source to play the shot sound.
-        [SerializeField] private List<Powder> powderList; /// List of powders you plan to attach to a firework.
+        [SerializeField] private List<PowderModificator> powderList; /// List of powders you plan to attach to a firework.
 
         /// <summary>
         /// Shoots a projectile in the specified direction with a spread effect.
@@ -44,7 +44,8 @@ namespace ShootingSystem {
             {
                 projectileBehaviour.Init(projectilePool, startPosition, powderList);
                 // Vide la poudre pour la prochaine fusée
-                powderList = new List<Powder>();
+                powderList = new List<PowderModificator>();
+                projectileBehaviour.GetComponent<ParticleSystem>().Play();
                 PlayShotSound();
             }
         }    

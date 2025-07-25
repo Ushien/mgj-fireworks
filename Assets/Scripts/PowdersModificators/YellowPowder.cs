@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class YellowPowder : Powder
+public class YellowPowder : PowderModificator
 {
     override public void ApplyModifier()
     {
         ParticleSystem.MainModule mm = attachedFirework.GetComponent<ParticleSystem>().main;
-        mm.startColor = Color.yellow;
+        //
     }
 }
