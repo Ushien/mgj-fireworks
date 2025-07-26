@@ -8,8 +8,14 @@ namespace ShootingSystem {
         [SerializeField] private ObjectPool projectilePool; /// The object pool managing the projectile instances.
         [SerializeField] private Transform projectileSpawnPoint; /// Spawn point for the projectiles.
         [SerializeField] private AudioSource audioSource; /// Audio source to play the shot sound.
-        [SerializeField] private List<PowderModificator> powderList; /// List of powders you plan to attach to a firework.
+        [SerializeField] public List<PowderModificator> powderList; /// List of powders you plan to attach to a firework.
         [SerializeField] private List<AudioClip> shotSounds;
+
+        public static BaseShootingSystem Instance;
+
+        void Awake(){
+            Instance = this;
+        }
 
         /// <summary>
         /// Shoots a projectile in the specified direction with a spread effect.

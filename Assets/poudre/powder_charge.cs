@@ -1,11 +1,14 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using ShootingSystem;
 
 public class powder_charge : MonoBehaviour
 {
     // Variables
     // =========
+    public Transform meche;
+    public List<PowderModificator> powderPrefabs;
     public static powder_charge Instance;
     public int maxCharge;
     public int chargeNeed;
@@ -24,20 +27,22 @@ public class powder_charge : MonoBehaviour
     
     void Start()
     {
-        width = GetComponent<SpriteRenderer>().bounds.size.x - xOffset;
+        width = meche.GetComponent<SpriteRenderer>().bounds.size.x - xOffset;
     }
 
     void Update(){
         if (currentCharge >= chargeNeed)
         {
-            AddFlag(currentIndex);
+            AddCharge(currentIndex);
             currentCharge = 0;
         }
     }
 
-    public void AddFlag(int Index){
-        GameObject instance = Instantiate(flagGO[Index], transform);
-        instance.transform.position = new Vector3(transform.position.x + width/2 - (width/maxCharge)*chargeCount, transform.position.y + yOffset, transform.position.z);
+    public void AddCharge(int Index){
+        BaseShootingSystem.Instance.powderList.Add(powderPrefabs[Index]);
+        GameObject instance = Instantiate(flagGO[Index], meche);
+        instance.transform.position = new Vector3(meche.position.x + width/2 - (width/maxCharge)*chargeCount, meche.position.y + yOffset, meche.position.z);
         chargeCount ++;
+        
     }
 }

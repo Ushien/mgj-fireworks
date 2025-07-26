@@ -6,6 +6,7 @@ public class pouring : MonoBehaviour
     public ParticleSystem system;
     public List<Color> colors;
     public float zDistanceFromCamera = 10f;
+    public Camera pouringCamera;
 
     void Update()
     {
@@ -13,7 +14,7 @@ public class pouring : MonoBehaviour
         Vector3 mouseScreenPos = Input.mousePosition;
         mouseScreenPos.z = zDistanceFromCamera;
 
-        Vector3 worldPos = Camera.main.ScreenToWorldPoint(mouseScreenPos);
+        Vector3 worldPos = pouringCamera.ScreenToWorldPoint(mouseScreenPos);
         Vector3 localPos = system.transform.InverseTransformPoint(worldPos);
 
         // Move emitter shape
