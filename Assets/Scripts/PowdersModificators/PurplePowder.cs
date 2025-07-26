@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using ShootingSystem;
 using UnityEngine;
 
 public class PurplePowder : PowderModificator
@@ -5,7 +7,7 @@ public class PurplePowder : PowderModificator
     [SerializeField]
     private ParticleSystem subBurst;
     // Rajoute une explosion supplémentaire
-    override public void ApplyModifier()
+    override public void ApplyModifier(List<PowderModificator> appliedPowders)
     {
         ParticleSystem mainBurst = FindLastBurst(attachedFirework.transform).GetComponent<ParticleSystem>();
         if (mainBurst == null || subBurst == null)
@@ -28,7 +30,14 @@ public class PurplePowder : PowderModificator
         ParticleSystem.MainModule mm = newBurst.transform.Find("Trails").GetComponent<ParticleSystem>().main;
         mm.startSize = newBurst.transform.parent.Find("Trails").GetComponent<ParticleSystem>().main.startSize.constant / 2f;
         mm = newBurst.GetComponent<ParticleSystem>().main;
-        mm.startSize = newBurst.transform.parent.GetComponent<ParticleSystem>().main.startSize.constant/2f;
+        mm.startSize = newBurst.transform.parent.GetComponent<ParticleSystem>().main.startSize.constant / 2f;
+
+        foreach (PowderModificator appliedPowder in appliedPowders)
+        {
+            appliedPowder.attachedFirework = newBurst.GetComponent<ParticleSystem>();
+            appliedPowder.ApplyModifier();
+        }
+
     }
 
     private Transform FindLastBurst(Transform originExplosion)

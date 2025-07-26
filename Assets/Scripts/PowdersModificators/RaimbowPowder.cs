@@ -3,22 +3,8 @@ using ParticleSystem = UnityEngine.ParticleSystem;
 
 public class RaimbowPowder : PowderModificator
 {
-    private int firstIndex = 0;
-
-    
     public override void ApplyModifier()
     {
-        
-        ParticleSystem.MainModule mainModule = attachedFirework.GetComponent<ParticleSystem>().main;
-        ParticleSystem.ColorOverLifetimeModule colorOverLifetime = attachedFirework.GetComponent<ParticleSystem>().colorOverLifetime;
-        
-        Transform burstTransform = attachedFirework.transform.Find("Burst");
-        Transform burstTrailsTransform = attachedFirework.transform.Find("Burst/Trails");
-        
-        ParticleSystem.SubEmittersModule subEmitters = burstTransform.GetComponent<ParticleSystem>().subEmitters;
-        ParticleSystem.MainModule burstMainModule = burstTransform.GetComponent<ParticleSystem>().main;
-        ParticleSystem.ColorOverLifetimeModule colorOverLifetimeBurstTrails = burstTrailsTransform.GetComponent<ParticleSystem>().colorOverLifetime;
-        
         Gradient rainbowGradient = new Gradient();
         rainbowGradient.SetKeys(
             new GradientColorKey[]
@@ -38,15 +24,51 @@ public class RaimbowPowder : PowderModificator
             }
         );
         
-        mainModule.startColor = new ParticleSystem.MinMaxGradient(rainbowGradient);
-        
-        subEmitters.SetSubEmitterProperties(firstIndex, ParticleSystemSubEmitterProperties.InheritNothing);
-        
+        // Change la couleur du projectile principal
+        ParticleSystem.MainModule mm = attachedFirework.main;
+        mm.startColor = new ParticleSystem.MinMaxGradient(rainbowGradient);
+
+        ParticleSystem.ColorOverLifetimeModule colorOverLifetime = attachedFirework.GetComponent<ParticleSystem>().colorOverLifetime;
         colorOverLifetime.enabled = true;
-        colorOverLifetimeBurstTrails.enabled = true;
-        
         colorOverLifetime.color = new ParticleSystem.MinMaxGradient(rainbowGradient);
-        colorOverLifetimeBurstTrails.color = new ParticleSystem.MinMaxGradient(rainbowGradient);
-        burstMainModule.startColor = new ParticleSystem.MinMaxGradient(rainbowGradient);
+
+        // Déclaration variables
+        ParticleSystem.MainModule mm1;
+        ParticleSystem.ColorOverLifetimeModule colorOverLifetime1;
+
+        // Change la couleur du trail
+        ParticleSystem subEmitter = attachedFirework.subEmitters.GetSubEmitterSystem(0);
+
+        mm1 = subEmitter.main;
+        mm1.startColor = mm.startColor;
+
+        colorOverLifetime1 = subEmitter.colorOverLifetime;
+        colorOverLifetime1.enabled = colorOverLifetime.enabled;
+        colorOverLifetime1.color = colorOverLifetime.color;
+
+        // Si on manipule l'explosion principale
+        if (attachedFirework.name == "Fireworks(Clone)")
+        {
+            // Change la couleur des projectiles de l'explosion
+            ParticleSystem burstSystem = attachedFirework.subEmitters.GetSubEmitterSystem(1);
+
+            mm1 = burstSystem.main;
+            mm1.startColor = mm.startColor;
+
+            colorOverLifetime1 = burstSystem.colorOverLifetime;
+            colorOverLifetime1.enabled = colorOverLifetime.enabled;
+            colorOverLifetime1.color = colorOverLifetime.color;
+
+
+            // Change la couleur du trail de l'explosion
+            ParticleSystem trailSystem = burstSystem.subEmitters.GetSubEmitterSystem(0);
+
+            mm1 = trailSystem.main;
+            mm1.startColor = mm.startColor;
+
+            colorOverLifetime1 = trailSystem.colorOverLifetime;
+            colorOverLifetime1.enabled = colorOverLifetime.enabled;
+            colorOverLifetime1.color = colorOverLifetime.color;
+        }
     }
 }
