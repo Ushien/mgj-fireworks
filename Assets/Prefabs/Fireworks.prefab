@@ -9760,6 +9760,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionSounds:
   - {fileID: 8300000, guid: 36b1003b7e35adf45844311750c078f3, type: 3}
+  character1Animator: {fileID: 4705602927045496124, guid: 8e196f68c1b7b0e43b76a7e1e81083bf, type: 3}
+  character2Animator: {fileID: 8350801287176343315, guid: 6b084f6b1b0d224428fff5de6ab35906, type: 3}
 --- !u!1001 &3473375703982238797
 PrefabInstance:
   m_ObjectHideFlags: 0
