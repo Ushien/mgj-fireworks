@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundBurst : MonoBehaviour
@@ -10,13 +11,16 @@ public class SoundBurst : MonoBehaviour
 
     private int limit = 27;
     
-    [SerializeField]
     private AudioClip clip;
+
+    [SerializeField] private List<AudioClip> explosionSounds;
 
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
         particleSystem = GetComponent<ParticleSystem>();
+        int randomIndex = UnityEngine.Random.Range(0, explosionSounds.Count);
+        clip = explosionSounds[randomIndex];
     }
     
     void Update()

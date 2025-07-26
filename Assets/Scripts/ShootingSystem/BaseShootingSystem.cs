@@ -7,9 +7,9 @@ namespace ShootingSystem {
     {
         [SerializeField] private ObjectPool projectilePool; /// The object pool managing the projectile instances.
         [SerializeField] private Transform projectileSpawnPoint; /// Spawn point for the projectiles.
-        [SerializeField] private AudioClip shotSound; /// Sound played when a projectile is shot.
         [SerializeField] private AudioSource audioSource; /// Audio source to play the shot sound.
         [SerializeField] private List<PowderModificator> powderList; /// List of powders you plan to attach to a firework.
+        [SerializeField] private List<AudioClip> shotSounds;
 
         /// <summary>
         /// Shoots a projectile in the specified direction with a spread effect.
@@ -25,9 +25,11 @@ namespace ShootingSystem {
         /// </summary>
         protected void PlayShotSound()
         {
-            if (shotSound != null && audioSource != null)
+            if (shotSounds != null && audioSource != null)
             {
-                audioSource.PlayOneShot(shotSound);
+                int randomIndex = UnityEngine.Random.Range(0, shotSounds.Count);
+                AudioClip randomClip = shotSounds[randomIndex];
+                audioSource.PlayOneShot(randomClip);
             }
         }
 
