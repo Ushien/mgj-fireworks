@@ -30,12 +30,15 @@ public class SoundSubBurst : MonoBehaviour
     void Update()
     {
         int currentCount = particleSystem.particleCount;
+        
+        //attend que le trails ait bien démmaré
         if (!hasStarted && currentCount > limit)
         {
             hasStarted = true;
         }
         
-        if (hasStarted &&particleSystem.particleCount < previousParticleCount+10 && !isPlayed)
+        //lance le son lorsque le nombre de particule diminue
+        if (particleSystem.particleCount < previousParticleCount+10 && !isPlayed && hasStarted)
         {
             if (clip != null)
             {
@@ -43,10 +46,10 @@ public class SoundSubBurst : MonoBehaviour
             }
             isPlayed = true;
         }
-        
         previousParticleCount = particleSystem.particleCount;
     }
     
+    // Joue le son plusieurs fois
     private IEnumerator PlayClipRepeatedly()
     {
         int random = Random.Range(8, 10);

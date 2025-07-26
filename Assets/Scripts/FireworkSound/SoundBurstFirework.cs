@@ -5,6 +5,7 @@ using UnityEngine;
 public class SoundBurstFirework : MonoBehaviour
 {
     private ParticleSystem particleSystem;
+    private ParticleSystem.Particle[] mParticles;
     FireworkAudioManager fireworkAudioManager;
     bool isPlayed = false;
     bool hasStarted = false;
@@ -19,9 +20,7 @@ public class SoundBurstFirework : MonoBehaviour
     {
         particleSystem = GetComponent<ParticleSystem>();
         fireworkAudioManager = FireworkAudioManager.Instance;
-        int randomIndex = Random.Range(0, explosionSounds.Count);
-        clip = explosionSounds[randomIndex];
-
+        clip = explosionSounds[Random.Range(0, explosionSounds.Count)];
     }
 
     /*void Update()
@@ -42,20 +41,12 @@ public class SoundBurstFirework : MonoBehaviour
             isPlayed = true;
         }
     }*/
-    
-    private ParticleSystem.Particle[] mParticles;
- 
     void Update()
     {
-        if(mParticles == null || mParticles.Length < particleSystem.maxParticles)
-        {
-            mParticles = new ParticleSystem.Particle[particleSystem.maxParticles];
-            Debug.Log(particleSystem.maxParticles);
-
-        }
-        int aliveParticles = particleSystem.GetParticles(mParticles);
-        particleSystem.GetParticles(mParticles);
-        for(int i = 0; i < aliveParticles; i++)
+        mParticles = new ParticleSystem.Particle[particleSystem.maxParticles];
+        
+        // Verifie pour chaque particule si sa fin de vie est atteinte
+        for(int i = 0; i < particleSystem.GetParticles(mParticles); i++)
         {
             if (mParticles[i].remainingLifetime < 0.01f)
             {
@@ -64,10 +55,11 @@ public class SoundBurstFirework : MonoBehaviour
             }
         }
     }
+    
+    // Coroutine pour jouer le son à la fin de la vie de la particule
     private IEnumerator ParticleLifeEnding(float lifetime)
     {
         yield return new WaitForSeconds(lifetime);
-     
         if (clip != null)
         {
             fireworkAudioManager.PlaySound(clip);
