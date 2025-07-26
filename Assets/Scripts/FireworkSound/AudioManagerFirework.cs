@@ -7,6 +7,9 @@ public class FireworkAudioManager : MonoBehaviour
     
     [SerializeField] private AudioClip[] explosionSounds;
     private AudioSource audioSource;
+    
+    [SerializeField] private Animator character1Animator;
+    [SerializeField] private Animator character2Animator;
 
     private void Start()
     {
@@ -22,9 +25,11 @@ public class FireworkAudioManager : MonoBehaviour
         }
         Instance = this;
     }
-    
+
     public void PlaySound(AudioClip clip)
     {
         audioSource.PlayOneShot(clip);
+        character1Animator.Play("CharacterJump");
+        character2Animator.Play("CharacterJump");
     }
 }

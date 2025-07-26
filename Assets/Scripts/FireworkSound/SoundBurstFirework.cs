@@ -11,7 +11,7 @@ public class SoundBurstFirework : MonoBehaviour
     bool hasStarted = false;
 
     private int limit = 27;
-    
+
     private AudioClip clip;
 
     [SerializeField] private List<AudioClip> explosionSounds;
