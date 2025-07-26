@@ -3,10 +3,17 @@ using System.Collections.Generic;
 
 public class pouring : MonoBehaviour
 {
+    public static pouring Instance;
     public ParticleSystem system;
     public List<Color> colors;
     public float zDistanceFromCamera = 10f;
     public Camera pouringCamera;
+    public bool hasBucket = false;
+
+    void Awake()
+    {
+        Instance = this;
+    }
 
     void Update()
     {
@@ -23,7 +30,7 @@ public class pouring : MonoBehaviour
 
         // Update emission rate
         var emission = system.emission;
-        if (Input.GetMouseButtonDown(0) && !powder_charge.Instance.overShelf)
+        if (Input.GetMouseButtonDown(0) && !powder_charge.Instance.overShelf && hasBucket)
         {
             emission.rateOverTime = 2000f;
         }
@@ -35,6 +42,7 @@ public class pouring : MonoBehaviour
 
     public void SetParticleColor(int index)
     {
+        powder_charge.Instance.currentCharge = 0;
         var colorOverLifetime = system.colorOverLifetime;
         if (index < 0 || index >= colors.Count)
         {
