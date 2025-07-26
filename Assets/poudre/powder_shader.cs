@@ -10,11 +10,15 @@ public class powder_shader : MonoBehaviour
     // Variables
     // =========
     private Vector2      cursorPos;
+    public static powder_shader Instance;
 
-    const int            SIZE_PARTICLE = 10 * sizeof(float);
+    const int            SIZE_PARTICLE = 12 * sizeof(float);
     public int           particleCount = 100000;
+    public int           selectedIndex = 0;
     int                  kernelID;
     int                  groupSizeX;
+    public bool          overShelf = false;
+    public int           filling = 0;
 
     [Header("Paramètres de poudre")]
     public float         xShift = 2f;
@@ -23,10 +27,14 @@ public class powder_shader : MonoBehaviour
     public float         maxDistance = 10f;
     public bool          pouring = false;
     public bool          selected = false;
+    public float         yBoxMax = -4f;
+    public float         xBoxMin = -3f;
+    public float         xBoxMax = 3f;
 
     public Material      material;
     public ComputeShader shader;
     ComputeBuffer        particleBuffer;
+    ComputeBuffer        addedCounter;
     RenderParams         rp;
     #endregion
 
@@ -40,6 +48,7 @@ public class powder_shader : MonoBehaviour
         public Vector3 truePosition;
         public Vector3 velocity;
         public float   life;
+        public Vector2Int type;
     }
     #endregion
 
@@ -47,6 +56,18 @@ public class powder_shader : MonoBehaviour
     #region Start Update
     // Initialization
     // ==============
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        //DontDestroyOnLoad(gameObject);
+    }
+
     void Start()
     {
         Init();
@@ -57,7 +78,7 @@ public class powder_shader : MonoBehaviour
     // ======
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && selected)
+        if (Input.GetMouseButtonDown(0) && selected &&  !overShelf)
         {
             shader.SetBool("pouring", true);
         }
@@ -74,11 +95,21 @@ public class powder_shader : MonoBehaviour
         shader.SetFloat("deltaTime", Time.deltaTime);
         shader.SetFloats("mousePosition", mousePosition2D);
         shader.SetFloat("timeUpdate", Time.time);
+        shader.SetInt("selectedIndex", selectedIndex);
 
         // Update des particules
         // ---------------------
         shader.Dispatch(kernelID, groupSizeX, 1, 1);
         Graphics.RenderPrimitives(rp, MeshTopology.Points, 1, particleCount);
+
+        // On récupère le nombre de particules dans la fusée cette frame
+        // -------------------------------------------------------------
+        uint[] addCount = new uint[1];
+        addedCounter.GetData(addCount);
+        int addCountInt = (int)addCount[0];
+        filling += addCountInt;
+        uint[] zero = new uint[1] { 0 };
+        addedCounter.SetData(zero);
     }
 
     void OnGUI()
@@ -112,26 +143,31 @@ public class powder_shader : MonoBehaviour
             // Positions random dans un carré de hauteur égale à celle de la chute
             // -------------------------------------------------------------------
             float y = UnityEngine.Random.Range(-10, 10);
-
-            particleArray[i].position.x = -100;
-            particleArray[i].position.y = y;
-            particleArray[i].position.z = 0;
+            particleArray[i].position = new Vector3(-100, y, 0);
             particleArray[i].truePosition = particleArray[i].position;
 
             // Vitesse initiale nulle
             // ----------------------
-            particleArray[i].velocity.x = 0;
-            particleArray[i].velocity.y = 0;
-            particleArray[i].velocity.z = 0;
+            particleArray[i].velocity = Vector3.zero;
 
             // vie Random entre 1 et 6 ??
             // --------------------------
             particleArray[i].life = Random.value * 5.0f + 1.0f;
+
+            // couleur initiale
+            // ----------------
+            particleArray[i].type = new Vector2Int (1,1); // A gauche le current et displayed, à droite le sélected (qui change le current au respawn)
         }
 
         // Création du buffer (structure de transfert vers le GPU)
         // -------------------------------------------------------
         particleBuffer = new ComputeBuffer(particleCount, SIZE_PARTICLE);
+
+        // Buffer de comptage de particules dans la fusée
+        // ----------------------------------------------
+        addedCounter = new ComputeBuffer(1, sizeof(uint), ComputeBufferType.Raw);
+        uint[] zero = new uint[1] { 0 };
+        addedCounter.SetData(zero);
         
 
         // Remplissage du buffer avec les données
@@ -150,6 +186,7 @@ public class powder_shader : MonoBehaviour
         // on envoie le buffer sur le shader et le compute shader
         // ------------------------------------------------------
         shader.SetBuffer(kernelID, "particleBuffer", particleBuffer);
+        shader.SetBuffer(kernelID, "addedCounter", addedCounter);
         material.SetBuffer("particleBuffer", particleBuffer);
         shader.SetFloat("xShift", xShift);
         shader.SetFloat("shiftAmount", shiftAmount);
@@ -157,6 +194,10 @@ public class powder_shader : MonoBehaviour
         shader.SetFloat("maxDistance", maxDistance);
         shader.SetFloat("timeUpdate", Time.time);
         shader.SetBool("pouring", false);
+        shader.SetInt("selectedIndex", 1);
+        shader.SetFloat("xBoxMax", xBoxMax);
+        shader.SetFloat("xBoxMin", xBoxMin);
+        shader.SetFloat("yBoxMax", yBoxMax);
 
         // On setup le matériau des particules et les world bounds (au delà desquelles on kill les particules)
         // ---------------------------------------------------------------------------------------------------
@@ -170,6 +211,11 @@ public class powder_shader : MonoBehaviour
     {
         if (particleBuffer != null)
             particleBuffer.Release();
+        if (addedCounter != null)
+        {
+            addedCounter.Release();
+            addedCounter = null;
+        }
     }
     #endregion
 }

@@ -7,10 +7,12 @@ struct Particle
     float3 truePosition;
 	float3 velocity;
 	float life;
+    int2 type;
 };
 
 // Particle's data, shared with the shader
 RWStructuredBuffer<Particle> particleBuffer;
+RWStructuredBuffer<uint> addedCounter; // communique le nombre de particules ajoutées
 
 // Variables set from the CPU 
 float deltaTime;
@@ -20,6 +22,10 @@ float shiftAmount;
 float startSize;
 float maxDistance;
 float timeUpdate;
+int selectedIndex;
+float yBoxMax;
+float xBoxMin;
+float xBoxMax;
 
 bool pouring;
 
@@ -36,8 +42,7 @@ uint rand_xorshift()
 
 void respawn(uint id)
 {
-    // if(!pouring)
-    //     return;
+    particleBuffer[id].type[0] = particleBuffer[id].type[1];
 	rng_state = id;
 	float tmp = (1.0 / 4294967296.0);
 	float f0 = float(rand_xorshift()) * tmp - 0.5;
@@ -70,9 +75,36 @@ float RandRange(uint seed, float min, float max)
 void CSParticle(uint3 id : SV_DispatchThreadID)
 {
     Particle particle = particleBuffer[id.x];
+    particle.type[1] = selectedIndex;
+
+    // Si la particule arrive à gauche de la fusée, elle rebondit
+    if (particle.position.y <= yBoxMax && abs(particle.position.x - xBoxMax) < 0.1 && particle.velocity.x < 0 )
+        particle.velocity.x = - particle.velocity.x;
+
+    // Si la particule touche un bord de la fusée, elle rebondit
+    if (abs(particle.position.y - yBoxMax) < 0.1 && (abs(particle.position.x - xBoxMax) < 0.1 || abs(particle.position.x - xBoxMin) < 0.1) && particle.velocity.y < 0) {
+        particle.velocity.y = - particle.velocity.y/4; 
+        // pour éviter des rebonds infinis
+        if(abs(particle.velocity.x) < 0.1 ){
+            uint seed = id.x * 12345 + uint(timeUpdate * 1000.0);
+            particle.velocity.x = RandRange(seed, -1.0f, 1.0f);
+            }
+    }
+
+    // Si la particule arrive dans la fusée
+    if (particle.position.y < yBoxMax && particle.position.x > xBoxMin && particle.position.x < xBoxMax && particle.life != -1)
+    {
+        InterlockedAdd(addedCounter[0], 1);
+        particle.life = -1;
+
+        // Declare seed before using it
+        uint seed = id.x * 12345 + uint(timeUpdate * 1000.0);
+        particle.truePosition.y = RandRange(seed, -10.0f, 10.0f);
+
+    }
 
     // Kill la particule au delà d'une distance max
-    if ((particle.position.y < maxDistance && particle.life != -1) || particle.truePosition.y < maxDistance)
+    if ((particle.position.y < maxDistance && particle.life != -1) || (particle.truePosition.y < maxDistance && particle.life == -1))
     {
         particle.life = -1;
 
