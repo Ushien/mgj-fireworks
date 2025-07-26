@@ -59,7 +59,7 @@ public class powder_charge : MonoBehaviour
                 Time.deltaTime * lerpSpeed
             );
 
-            if( Vector3.Distance(powderCamera.transform.position, shootCamera.transform.position) < 0.4f){
+            if( Vector3.Distance(powderCamera.transform.position, shootCamera.transform.position) < 0.8f){
                 powderCamera.enabled = false;
             }
         }
