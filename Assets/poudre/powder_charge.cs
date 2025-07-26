@@ -20,6 +20,14 @@ public class powder_charge : MonoBehaviour
     public float yOffset = -10f;
     public int currentIndex = 0;
     public bool overShelf = false;
+    public GameObject powderUI;
+    public GameObject powderPrefab;
+
+    // Camera transition setting
+    public Camera powderCamera;    
+    public Camera shootCamera;    
+    public float lerpSpeed = 5f; 
+    private bool proceeding = false;
 
     void Awake(){
         Instance = this;
@@ -36,6 +44,25 @@ public class powder_charge : MonoBehaviour
             AddCharge(currentIndex);
             currentCharge = 0;
         }
+        if(proceeding){
+            // lerp position
+            powderCamera.transform.position = Vector3.Lerp(
+                powderCamera.transform.position,
+                shootCamera.transform.position,
+                Time.deltaTime * lerpSpeed
+            );
+
+            // lerp fov
+            powderCamera.orthographicSize = Mathf.Lerp(
+                powderCamera.orthographicSize,
+                shootCamera.orthographicSize,
+                Time.deltaTime * lerpSpeed
+            );
+
+            if( Vector3.Distance(powderCamera.transform.position, shootCamera.transform.position) < 0.4f){
+                powderCamera.enabled = false;
+            }
+        }
     }
 
     public void AddCharge(int Index){
@@ -44,5 +71,11 @@ public class powder_charge : MonoBehaviour
         instance.transform.position = new Vector3(meche.position.x + width/2 - (width/maxCharge)*chargeCount, meche.position.y + yOffset, meche.position.z);
         chargeCount ++;
         
+    }
+
+    public void Proceed(){
+        proceeding = true;
+        powderUI.SetActive(false);
+        powderPrefab.SetActive(false);
     }
 }
