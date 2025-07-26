@@ -64,7 +64,6 @@ public class SoundBurstFirework : MonoBehaviour
             }
         }
     }
- 
     private IEnumerator ParticleLifeEnding(float lifetime)
     {
         yield return new WaitForSeconds(lifetime);
@@ -74,6 +73,4 @@ public class SoundBurstFirework : MonoBehaviour
             fireworkAudioManager.PlaySound(clip);
         }
     }
-    
-
 }

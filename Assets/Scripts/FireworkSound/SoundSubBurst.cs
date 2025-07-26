@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class SoundSubBurst : MonoBehaviour
 {
-    private AudioSource audioSource;
-    private List<AudioSource> audioPool;
 
     private ParticleSystem particleSystem;
     FireworkAudioManager fireworkAudioManager;
@@ -20,17 +18,14 @@ public class SoundSubBurst : MonoBehaviour
     private ParticleSystem.Particle[] mParticles;
 
 
-    private int limit = 25;
+    private int limit = 27;
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
         int randomIndex = Random.Range(0, explosionSounds.Count);
         clip = explosionSounds[randomIndex];
-        particleSystem = transform.parent.GetComponent<ParticleSystem>();
+        particleSystem = transform.parent.Find("Burst/Trails").GetComponent<ParticleSystem>();
         previousParticleCount = particleSystem.particleCount;
         fireworkAudioManager = FireworkAudioManager.Instance;
-        clip = explosionSounds[randomIndex];
-        
     }
     void Update()
     {
@@ -57,7 +52,7 @@ public class SoundSubBurst : MonoBehaviour
         int random = Random.Range(8, 10);
         for (int i = 0; i < random; i++)
         {
-            audioSource.PlayOneShot(clip);
+            fireworkAudioManager.PlaySound(clip);
             yield return new WaitForSeconds(0.2f);
         }
     }
@@ -81,14 +76,14 @@ public class SoundSubBurst : MonoBehaviour
     }
 }*/
 
-private IEnumerator ParticleLifeEnding(float lifetime)
-{
-    yield return new WaitForSeconds(lifetime);
-
-    if (clip != null)
+    private IEnumerator ParticleLifeEnding(float lifetime)
     {
-        fireworkAudioManager.PlaySound(clip);
+        yield return new WaitForSeconds(lifetime);
+
+        if (clip != null)
+        {
+            fireworkAudioManager.PlaySound(clip);
+        }
     }
-}
 
 }
