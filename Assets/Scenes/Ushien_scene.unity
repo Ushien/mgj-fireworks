@@ -459,8 +459,8 @@ MonoBehaviour:
   powderList:
   - {fileID: 4610993450242905759, guid: 90d27a92b01a02d4a93137a40ce3c645, type: 3}
   shotSounds:
-  - {fileID: 8300000, guid: 7c6227d5ba43cce4aa932e08145a23da, type: 3}
-  - {fileID: 8300000, guid: 13727810468d6f94a9547aa2764dfc1a, type: 3}
+  - {fileID: 8300000, guid: 49e8c7e326e3b4c46b111e8021ea0c3e, type: 3}
+  - {fileID: 8300000, guid: f18e8de7182052046a2e7e29fc3de4ef, type: 3}
 --- !u!4 &1156001265
 Transform:
   m_ObjectHideFlags: 0
