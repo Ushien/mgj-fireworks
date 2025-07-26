@@ -6,24 +6,32 @@ public class powder_charge : MonoBehaviour
 {
     // Variables
     // =========
+    public static powder_charge Instance;
     public int maxCharge;
     public int chargeNeed;
+    public int currentCharge = 0;
     public List<GameObject> flagGO;
     public int chargeCount = 0;
     private float width;
     public float xOffset = 10f;
     public float yOffset = -10f;
+    public int currentIndex = 0;
+    public bool overShelf = false;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Awake(){
+        Instance = this;
+    }
+    
     void Start()
     {
         width = GetComponent<SpriteRenderer>().bounds.size.x - xOffset;
     }
 
     void Update(){
-        if(powder_shader.Instance.filling >= chargeNeed && chargeCount <= maxCharge){
-            powder_shader.Instance.filling = 0;
-            AddFlag(powder_shader.Instance.selectedIndex);
+        if (currentCharge >= chargeNeed)
+        {
+            AddFlag(currentIndex);
+            currentCharge = 0;
         }
     }
 

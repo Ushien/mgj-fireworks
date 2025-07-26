@@ -14,7 +14,8 @@ public class bucket : MonoBehaviour,  IPointerDownHandler, IPointerUpHandler
     // Update is called once per frame
     void Update()
     {
-
+        
+        
         Vector2 movePos;
 
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
@@ -23,12 +24,29 @@ public class bucket : MonoBehaviour,  IPointerDownHandler, IPointerUpHandler
             out movePos);
 
         transform.position = parentCanvas.transform.TransformPoint(movePos);
+
+        // Check bounds and update counter
+        float xPos = transform.position.x;
+
+        // if (xPos >= minX && xPos <= maxX)
+        // {
+        //     timer += Time.deltaTime;
+        //     if (timer >= counterInterval)
+        //     {
+        //         counter++;
+        //         timer = 0f;
+        //         Debug.Log("Counter: " + counter);
+        //     }
+        // }
+        // else
+        // {
+        //     // Optional: reset timer when out of bounds
+        //     timer = 0f;
+        // }
     }
 
     public void ChangePowder(int i){
         bucketImage.sprite = bucketSprites[i];
-        powder_shader.Instance.selectedIndex = i;
-        powder_shader.Instance.filling = 0;
     }
 
     public void OnPointerDown(PointerEventData eventData)
