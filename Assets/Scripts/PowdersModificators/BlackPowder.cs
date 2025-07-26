@@ -1,18 +1,12 @@
 using UnityEngine;
 
-public class YellowPowder : PowderModificator
+public class BlackPowder : PowderModificator
 {
-    // il faut mettre la poudre dans la scene et ensuite rajoute la texture et le sprite renderer.
-    [SerializeField]
-    private SpriteRenderer spriteRenderer;
-    
-    [SerializeField]
-    private Texture2D texture;
     override public void ApplyModifier()
     {
         // Change la couleur du projectile principal
         ParticleSystem.MainModule mm = attachedFirework.GetComponent<ParticleSystem>().main;
-        mm.startColor = new ParticleSystem.MinMaxGradient(Color.yellow);
+        mm.startColor = new ParticleSystem.MinMaxGradient(Color.black);
         
         // Change la couleur du trail
         ParticleSystem.SubEmittersModule subEmitters = attachedFirework.subEmitters;
@@ -21,14 +15,11 @@ public class YellowPowder : PowderModificator
         
         if (attachedFirework.name == "Fireworks(Clone)")
         {
-            // permet de faire une explosion dans la forme du spriterender/texture
+            // augmente la durée de vie des projectile pour augmenter la taille de l'explosion
             ParticleSystem burstSystem = subEmitters.GetSubEmitterSystem(1);
-            ParticleSystem.ShapeModule shapeModule = burstSystem.shape;
-            shapeModule.shapeType = ParticleSystemShapeType.SpriteRenderer;
-            shapeModule.meshShapeType = ParticleSystemMeshShapeType.Triangle;
-            shapeModule.spriteRenderer = spriteRenderer;
-            shapeModule.texture = texture;
-            shapeModule.scale = new Vector3(20,20,20);
+            ParticleSystem.MainModule burstMain = burstSystem.main;
+            burstMain.startLifetime = new ParticleSystem.MinMaxCurve(burstMain.startLifetime.constantMin+1f, burstMain.startLifetime.constantMax+1f);
+
                 
             // Change la couleur des projectiles de l'explosion
             ParticleSystem.MainModule mm2 = burstSystem.main;
