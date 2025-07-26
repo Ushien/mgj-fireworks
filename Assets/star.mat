@@ -57,7 +57,7 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _sSpeeeeeddd: 0.2
+    - _sSpeeeeeddd: 0.05
     m_Colors:
     - _color: {r: 0, g: 0.29003802, b: 0.34942997, a: 0}
   m_BuildTextureStacks: []
