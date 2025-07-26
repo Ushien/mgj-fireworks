@@ -21,10 +21,33 @@ namespace ShootingSystem {
             this.startPosition = startPosition;
             this.pool = pool;
             this.powderList = powderList;
+
+            //Place les purplePowders dans une liste à part, afin de gérer l'héritage des caractéristiques
+            List<PowderModificator> purplePowders = new List<PowderModificator>();
+            List<PowderModificator> otherPowders = new List<PowderModificator>();
+
             foreach (PowderModificator powder in powderList)
             {
-                powder.attachedFirework = this;
+                if (powder is PurplePowder)
+                {
+                    purplePowders.Add(powder);
+                }
+                else
+                {
+                    otherPowders.Add(powder);
+                }
+            }
+
+            foreach (PowderModificator powder in otherPowders)
+            {
+                powder.attachedFirework = GetComponent<ParticleSystem>();
                 powder.ApplyModifier();
+            }
+
+            foreach (PowderModificator purplePowder in purplePowders)
+            {
+                purplePowder.attachedFirework = GetComponent<ParticleSystem>();
+                purplePowder.ApplyModifier(otherPowders);
             }
         }
 
