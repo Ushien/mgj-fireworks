@@ -9701,7 +9701,7 @@ ParticleSystemRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_RenderMode: 0
+  m_RenderMode: 4
   m_MeshDistribution: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -9724,7 +9724,7 @@ ParticleSystemRenderer:
   m_VertexStreams: 00010304
   m_UseCustomTrailVertexStreams: 0
   m_TrailVertexStreams: 00010304
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
@@ -9760,8 +9760,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionSounds:
   - {fileID: 8300000, guid: 36b1003b7e35adf45844311750c078f3, type: 3}
-  character1Animator: {fileID: 4705602927045496124, guid: 8e196f68c1b7b0e43b76a7e1e81083bf, type: 3}
-  character2Animator: {fileID: 8350801287176343315, guid: 6b084f6b1b0d224428fff5de6ab35906, type: 3}
 --- !u!1001 &3473375703982238797
 PrefabInstance:
   m_ObjectHideFlags: 0
