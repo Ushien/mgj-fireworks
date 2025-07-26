@@ -1,11 +1,11 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundBurst : MonoBehaviour
+public class SoundBurstFirework : MonoBehaviour
 {
     private AudioSource audioSource;
     private ParticleSystem particleSystem;
-    private int previousParticleCount;
     bool isPlayed = false;
     bool hasStarted = false;
 
@@ -19,10 +19,11 @@ public class SoundBurst : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         particleSystem = GetComponent<ParticleSystem>();
-        int randomIndex = UnityEngine.Random.Range(0, explosionSounds.Count);
+        int randomIndex = Random.Range(0, explosionSounds.Count);
         clip = explosionSounds[randomIndex];
     }
-    
+
+
     void Update()
     {
         int currentCount = particleSystem.particleCount;
@@ -31,8 +32,8 @@ public class SoundBurst : MonoBehaviour
         {
             hasStarted = true;
         }
-
-        if (hasStarted && currentCount <= limit && !isPlayed)
+        
+        else if (hasStarted && particleSystem.particleCount <= limit && !isPlayed)
         {
             if (clip != null)
             {
@@ -41,5 +42,4 @@ public class SoundBurst : MonoBehaviour
             isPlayed = true;
         }
     }
-
 }

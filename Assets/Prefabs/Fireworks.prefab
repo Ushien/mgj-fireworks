@@ -4847,8 +4847,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2a2f593c9ddc3444a2ba2cc9ed26a6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isParent: 0
   explosionSounds:
-  - {fileID: 8300000, guid: e429710d4fea29a43ab34d213d9d44f7, type: 3}
+  - {fileID: 8300000, guid: 36b1003b7e35adf45844311750c078f3, type: 3}
 --- !u!82 &6316010808599359741
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9866,6 +9867,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3309160954045725974}
     m_Modifications:
+    - target: {fileID: 294235466672363517, guid: 76373b868592a52428c39d2c01b13b67, type: 3}
+      propertyPath: isParent
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 372319660574433073, guid: 76373b868592a52428c39d2c01b13b67, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -9938,7 +9943,11 @@ PrefabInstance:
       propertyPath: SubModule.subEmitters.Array.data[0].properties
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 294235466672363517, guid: 76373b868592a52428c39d2c01b13b67, type: 3}
+    - {fileID: 4125423120553848032, guid: 76373b868592a52428c39d2c01b13b67, type: 3}
+    - {fileID: 3631426753322785439, guid: 76373b868592a52428c39d2c01b13b67, type: 3}
+    - {fileID: 3965897717184279697, guid: 76373b868592a52428c39d2c01b13b67, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
