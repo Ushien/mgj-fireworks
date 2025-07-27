@@ -17,6 +17,8 @@ public class bucketScript : MonoBehaviour
 
     void Update()
     {
+        if(!powder_charge.Instance.inStudio)
+            return;
         if(!isDragging){
             transform.position = Vector3.Lerp(transform.position, basePosition, Time.deltaTime * returnSpeed);
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0,0,0), Time.deltaTime * rotSpeed);
