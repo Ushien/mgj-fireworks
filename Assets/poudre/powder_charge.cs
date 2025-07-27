@@ -24,58 +24,48 @@ public class powder_charge : MonoBehaviour
     public GameObject powderPrefab;
 
     // Camera transition setting
-    public Camera powderCamera;    
-    public Camera shootCamera;    
-    public float lerpSpeed = 5f; 
+    public Camera powderCamera;
+    public Camera shootCamera;
+    public float lerpSpeed = 5f;
     private bool proceeding = false;
 
-    void Awake(){
+    void Awake()
+    {
         Instance = this;
     }
-    
+
     void Start()
     {
         width = meche.GetComponent<SpriteRenderer>().bounds.size.x - xOffset;
     }
 
-    void Update(){
+    void Update()
+    {
         if (currentCharge >= chargeNeed)
         {
             AddCharge(currentIndex);
             currentCharge = 0;
         }
-        if(proceeding){
-            // lerp position
-            powderCamera.transform.position = Vector3.Lerp(
-                powderCamera.transform.position,
-                shootCamera.transform.position,
-                Time.deltaTime * lerpSpeed
-            );
-
-            // lerp fov
-            powderCamera.orthographicSize = Mathf.Lerp(
-                powderCamera.orthographicSize,
-                shootCamera.orthographicSize,
-                Time.deltaTime * lerpSpeed
-            );
-
-            if( Vector3.Distance(powderCamera.transform.position, shootCamera.transform.position) < 0.8f){
-                powderCamera.enabled = false;
-            }
-        }
     }
 
-    public void AddCharge(int Index){
+    public void AddCharge(int Index)
+    {
         BaseShootingSystem.Instance.powderList.Add(powderPrefabs[Index]);
         GameObject instance = Instantiate(flagGO[Index], meche);
-        instance.transform.position = new Vector3(meche.position.x + width/2 - (width/maxCharge)*chargeCount, meche.position.y + yOffset, meche.position.z);
-        chargeCount ++;
-        
+        instance.transform.position = new Vector3(meche.position.x + width / 2 - (width / maxCharge) * chargeCount, meche.position.y + yOffset, meche.position.z);
+        chargeCount++;
+
     }
 
-    public void Proceed(){
-        proceeding = true;
+    public void DeactivatePowderUI()
+    {
         powderUI.SetActive(false);
         powderPrefab.SetActive(false);
+    }
+
+    public void ActivatePowderUI()
+    {
+        powderUI.SetActive(true);
+        powderPrefab.SetActive(true);
     }
 }
