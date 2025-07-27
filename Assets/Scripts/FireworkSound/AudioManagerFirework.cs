@@ -4,18 +4,20 @@ using UnityEngine;
 public class FireworkAudioManager : MonoBehaviour
 {
     public static FireworkAudioManager Instance { get; private set; }
-    
-    [SerializeField] 
+
+    [SerializeField]
     private AudioClip[] explosionSounds;
-    
+
     [SerializeField]
     private AudioClip[] subExplosionSounds;
-    
-    [SerializeField] 
+
+    [SerializeField]
     private AudioClip pouringSound;
-    
+    [SerializeField]
+    private AudioClip bipSound;
+
     private AudioSource audioSource;
-    
+
     [SerializeField] private Animator character1Animator;
     [SerializeField] private Animator character2Animator;
 
@@ -40,7 +42,7 @@ public class FireworkAudioManager : MonoBehaviour
         character1Animator.Play("CharacterJump");
         character2Animator.Play("CharacterJump");
     }
-    
+
     public void PlayExplosionSound()
     {
         if (explosionSounds.Length > 0)
@@ -50,7 +52,7 @@ public class FireworkAudioManager : MonoBehaviour
             PlaySound(randomClip);
         }
     }
-    
+
     public void PlaySubExplosionSound()
     {
         if (subExplosionSounds.Length > 0)
@@ -60,7 +62,7 @@ public class FireworkAudioManager : MonoBehaviour
             PlaySound(randomClip);
         }
     }
-    
+
     public void PlayPouringSound()
     {
         if (!audioSource.isPlaying)
@@ -77,6 +79,15 @@ public class FireworkAudioManager : MonoBehaviour
         {
             audioSource.Stop();
             audioSource.loop = false;
+        }
+    }
+
+    public void PlayBipSound()
+    {
+        if (!audioSource.isPlaying)
+        {
+            audioSource.clip = bipSound;
+            audioSource.Play();
         }
     }
 }

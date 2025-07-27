@@ -9,6 +9,7 @@ public class bucketScript : MonoBehaviour
     public float returnSpeed = 5f;
     public int index;
     public float rotSpeed = 1f;
+    public FireworkAudioManager fireworkAudioManager;
 
     void Start()
     {
@@ -37,6 +38,10 @@ public class bucketScript : MonoBehaviour
             {
                 if (hit.collider.gameObject == gameObject)
                 {
+                    if (!isDragging)
+                    {
+                        fireworkAudioManager.PlayBipSound();
+                    }
                     isDragging = true;
                     transform.position = new Vector3(transform.position.x, transform.position.y, basePosition.z-40f);
                     pouring.Instance.SetParticleColor(index);
