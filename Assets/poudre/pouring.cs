@@ -9,6 +9,7 @@ public class pouring : MonoBehaviour
     public float zDistanceFromCamera = 10f;
     public Camera pouringCamera;
     public bool hasBucket = false;
+    public AudioSource sandSound;
 
     void Awake()
     {
@@ -17,6 +18,14 @@ public class pouring : MonoBehaviour
 
     void Update()
     {
+        if(sandSound.enabled && system.particleCount != 0){
+            Debug.Log(system.particleCount);
+            sandSound.volume = (system.particleCount/4000f)*0.5f;
+            }
+        if (system.particleCount > 0 && !sandSound.enabled)
+            sandSound.enabled = true;
+        if (system.particleCount == 0 && sandSound.enabled)
+            sandSound.enabled = false;
         // Get world position of mouse
         Vector3 mouseScreenPos = Input.mousePosition;
         mouseScreenPos.z = zDistanceFromCamera;
