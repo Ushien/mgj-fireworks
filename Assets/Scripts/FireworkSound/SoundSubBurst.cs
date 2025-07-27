@@ -55,7 +55,7 @@ public class SoundSubBurst : MonoBehaviour
         int random = Random.Range(8, 10);
         for (int i = 0; i < random; i++)
         {
-            fireworkAudioManager.PlaySound(clip);
+            fireworkAudioManager.PlaySubExplosionSound();
             yield return new WaitForSeconds(0.2f);
         }
     }

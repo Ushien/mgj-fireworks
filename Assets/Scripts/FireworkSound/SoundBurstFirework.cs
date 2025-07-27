@@ -62,7 +62,7 @@ public class SoundBurstFirework : MonoBehaviour
         yield return new WaitForSeconds(lifetime);
         if (clip != null)
         {
-            fireworkAudioManager.PlaySound(clip);
+            fireworkAudioManager.PlayExplosionSound();
         }
     }
 }
