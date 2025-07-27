@@ -13,6 +13,8 @@ namespace ShootingSystem {
 
         public static BaseShootingSystem Instance;
 
+        // Ajout système couleur Alexandre
+
         void Awake(){
             Instance = this;
         }

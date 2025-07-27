@@ -9060,7 +9060,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1730563048
 Transform:
   m_ObjectHideFlags: 0
@@ -9203,6 +9203,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionSounds: []
+  subExplosionSounds: []
+  pouringSound: {fileID: 0}
   character1Animator: {fileID: 1648277766}
   character2Animator: {fileID: 512036289}
 --- !u!82 &1811483870
