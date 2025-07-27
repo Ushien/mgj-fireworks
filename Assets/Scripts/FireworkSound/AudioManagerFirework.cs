@@ -55,7 +55,7 @@ public class FireworkAudioManager : MonoBehaviour
     {
         if (subExplosionSounds.Length > 0)
         {
-            int randomIndex = UnityEngine.Random.Range(0, explosionSounds.Length);
+            int randomIndex = UnityEngine.Random.Range(0, subExplosionSounds.Length);
             AudioClip randomClip = subExplosionSounds[randomIndex];
             PlaySound(randomClip);
         }
