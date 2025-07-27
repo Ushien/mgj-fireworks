@@ -38,7 +38,7 @@ public class pouring : MonoBehaviour
 
         // Update emission rate
         var emission = system.emission;
-        if (Input.GetMouseButtonDown(0) && !powder_charge.Instance.overShelf && hasBucket && powder_charge.Instance.inStudio)
+        if (Input.GetMouseButtonDown(0) && hasBucket && powder_charge.Instance.inStudio)
         {
             emission.rateOverTime = 2000f;
         }

@@ -48,52 +48,53 @@ public class powder_charge : MonoBehaviour
 
     void Update()
     {
-        if(fading == 1){
+        if (fading == 1) {
             foreach (GameObject objectToFade in toFade)
             {
-                Renderer renderer = objectToFade.GetComponent<Renderer>();
-                if (renderer != null)
+                SpriteRenderer sr = objectToFade.GetComponent<SpriteRenderer>();
+                if (sr != null)
                 {
-                    Color currentColor = renderer.material.color;
-                    float newValue = Mathf.Lerp(currentColor.r, 0f, Time.deltaTime * fadeSpeed); 
-                    Color fadedColor = new Color(newValue, newValue, newValue, currentColor.a);
-                    renderer.material.color = fadedColor;
+                    Color c = sr.color;
+                    float faded = Mathf.Lerp(c.r, 0f, Time.deltaTime * fadeSpeed);
+                    sr.color = new Color(faded, faded, faded, 1f);
                 }
             }
-            powderStudio.transform.localScale = Vector3.Lerp( powderStudio.transform.localScale,
-                                                              new Vector3(fadeScale, fadeScale, fadeScale), 
-                                                              Time.deltaTime * fadeSpeed);
-            Renderer fadeRenderer = studioBckgrnd.GetComponent<Renderer>();
-            if(fadeRenderer != null){
-                    Color currentColor = fadeRenderer.material.color;
-                    float newAlpha = Mathf.Lerp(currentColor.a, 0f, Time.deltaTime * fadeSpeed); 
-                    Color fadedColor = new Color(currentColor.r, currentColor.g, currentColor.b, newAlpha);
-                    fadeRenderer.material.color = fadedColor;
+
+            // Scale and background fade (keep this if background is still a 3D object)
+            powderStudio.transform.localScale = Vector3.Lerp(powderStudio.transform.localScale,
+                                                            new Vector3(fadeScale, fadeScale, fadeScale),
+                                                            Time.deltaTime * fadeSpeed);
+            
+            SpriteRenderer bgRenderer = studioBckgrnd.GetComponent<SpriteRenderer>();
+            if (bgRenderer != null) {
+                Color bgColor = bgRenderer.color;
+                float newAlpha = Mathf.Lerp(bgColor.a, 0f, Time.deltaTime * fadeSpeed);
+                bgRenderer.color = new Color(bgColor.r, bgColor.g, bgColor.b, newAlpha);
             }
         }
 
         if (fading == -1){
             foreach (GameObject objectToFade in toFade)
             {
-                Renderer renderer = objectToFade.GetComponent<Renderer>();
-                if (renderer != null)
+                SpriteRenderer sr = objectToFade.GetComponent<SpriteRenderer>();
+                if (sr != null)
                 {
-                    Color currentColor = renderer.material.color;
-                    float newValue = Mathf.Lerp(currentColor.r, 1f, Time.deltaTime * fadeSpeed); 
-                    Color fadedColor = new Color(newValue, newValue, newValue, currentColor.a);
-                    renderer.material.color = fadedColor;
+                    Color c = sr.color;
+                    float faded = Mathf.Lerp(c.r, 1f, Time.deltaTime * fadeSpeed);
+                    sr.color = new Color(faded, faded, faded, 1f);
                 }
             }
-            powderStudio.transform.localScale = Vector3.Lerp( powderStudio.transform.localScale,
-                                                              new Vector3(1f, 1f, 1f), 
-                                                              Time.deltaTime * fadeSpeed);
 
-            Renderer fadeRenderer = studioBckgrnd.GetComponent<Renderer>();
-            if(fadeRenderer != null){
-                    Color currentColor = GetComponent<Renderer>().material.color;
-                    float newAlpha = Mathf.Lerp(currentColor.a, 0f, Time.deltaTime * fadeSpeed); 
-                    Color fadedColor = new Color(currentColor.r, currentColor.g, currentColor.b, newAlpha);
-                    fadeRenderer.material.color = fadedColor;
+            // Scale and background fade (keep this if background is still a 3D object)
+            powderStudio.transform.localScale = Vector3.Lerp(powderStudio.transform.localScale,
+                                                            new Vector3(1f, 1f, 1f),
+                                                            Time.deltaTime * fadeSpeed);
+            
+            SpriteRenderer bgRenderer = studioBckgrnd.GetComponent<SpriteRenderer>();
+            if (bgRenderer != null) {
+                Color bgColor = bgRenderer.color;
+                float newAlpha = Mathf.Lerp(bgColor.a, 1f, Time.deltaTime * fadeSpeed);
+                bgRenderer.color = new Color(bgColor.r, bgColor.g, bgColor.b, newAlpha);
             }
         }
 
