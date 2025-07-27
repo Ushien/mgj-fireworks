@@ -11,18 +11,12 @@ public class SoundSubBurst : MonoBehaviour
     bool isPlayed = false;
     bool hasStarted = false;
     
-    private AudioClip clip;
-
-    [SerializeField] private List<AudioClip> explosionSounds;
-    
     private ParticleSystem.Particle[] mParticles;
 
 
     private int limit = 27;
     void Start()
     {
-        int randomIndex = Random.Range(0, explosionSounds.Count);
-        clip = explosionSounds[randomIndex];
         particleSystem = transform.parent.Find("Burst/Trails").GetComponent<ParticleSystem>();
         previousParticleCount = particleSystem.particleCount;
         fireworkAudioManager = FireworkAudioManager.Instance;
@@ -40,10 +34,9 @@ public class SoundSubBurst : MonoBehaviour
         //lance le son lorsque le nombre de particule diminue
         if (particleSystem.particleCount < previousParticleCount+10 && !isPlayed && hasStarted)
         {
-            if (clip != null)
-            {
-                StartCoroutine(PlayClipRepeatedly());
-            }
+
+            StartCoroutine(PlayClipRepeatedly());
+           
             isPlayed = true;
         }
         previousParticleCount = particleSystem.particleCount;
@@ -59,34 +52,4 @@ public class SoundSubBurst : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
         }
     }
-    
-/*void Update()
-{
-    if(mParticles == null || mParticles.Length < particleSystem.maxParticles)
-    {
-        mParticles = new ParticleSystem.Particle[particleSystem.maxParticles];
-        Debug.Log(particleSystem.maxParticles);
-    }
-    int aliveParticles = particleSystem.GetParticles(mParticles);
-    particleSystem.GetParticles(mParticles);
-    for(int i = 0; i < aliveParticles; i++)
-    {
-        if (mParticles[i].remainingLifetime < 0.01f)
-        {
-            mParticles[i].remainingLifetime = 0f;
-            StartCoroutine(ParticleLifeEnding(mParticles[i].remainingLifetime - 0.01f));
-        }
-    }
-}*/
-
-    private IEnumerator ParticleLifeEnding(float lifetime)
-    {
-        yield return new WaitForSeconds(lifetime);
-
-        if (clip != null)
-        {
-            fireworkAudioManager.PlaySound(clip);
-        }
-    }
-
 }
