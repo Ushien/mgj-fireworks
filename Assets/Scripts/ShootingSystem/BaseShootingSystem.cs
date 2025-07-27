@@ -15,7 +15,8 @@ namespace ShootingSystem {
 
         // Ajout système couleur Alexandre
 
-        void Awake(){
+        void Awake()
+        {
             Instance = this;
         }
 
@@ -53,11 +54,14 @@ namespace ShootingSystem {
             if (projectileBehaviour != null)
             {
                 projectileBehaviour.Init(projectilePool, startPosition, powderList);
-                // Vide la poudre pour la prochaine fusée
-                powderList = new List<PowderModificator>();
                 projectileBehaviour.GetComponent<ParticleSystem>().Play();
                 PlayShotSound();
             }
         }    
+        
+        public void flushPowderList()
+        {
+            powderList = new List<PowderModificator>();
+        }
     }
 }
