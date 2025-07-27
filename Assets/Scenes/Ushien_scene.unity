@@ -1461,7 +1461,7 @@ MonoBehaviour:
   returnSpeed: 5
   index: 4
   rotSpeed: 10
-  fireworkAudioManager: {fileID: 0}
+  fireworkAudioManager: {fileID: 1811483869}
 --- !u!212 &555183061
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1778,7 +1778,7 @@ MonoBehaviour:
   returnSpeed: 5
   index: 11
   rotSpeed: 10
-  fireworkAudioManager: {fileID: 0}
+  fireworkAudioManager: {fileID: 1811483869}
 --- !u!212 &648480846
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1907,7 +1907,7 @@ MonoBehaviour:
   returnSpeed: 5
   index: 3
   rotSpeed: 10
-  fireworkAudioManager: {fileID: 0}
+  fireworkAudioManager: {fileID: 1811483869}
 --- !u!212 &734112813
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2070,7 +2070,7 @@ MonoBehaviour:
   returnSpeed: 5
   index: 1
   rotSpeed: 10
-  fireworkAudioManager: {fileID: 0}
+  fireworkAudioManager: {fileID: 1811483869}
 --- !u!65 &756905237
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2252,7 +2252,7 @@ MonoBehaviour:
   returnSpeed: 5
   index: 9
   rotSpeed: 10
-  fireworkAudioManager: {fileID: 0}
+  fireworkAudioManager: {fileID: 1811483869}
 --- !u!212 &835266809
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2810,7 +2810,7 @@ MonoBehaviour:
   returnSpeed: 5
   index: 2
   rotSpeed: 10
-  fireworkAudioManager: {fileID: 0}
+  fireworkAudioManager: {fileID: 1811483869}
 --- !u!212 &939042810
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3544,7 +3544,7 @@ MonoBehaviour:
   returnSpeed: 5
   index: 8
   rotSpeed: 10
-  fireworkAudioManager: {fileID: 0}
+  fireworkAudioManager: {fileID: 1811483869}
 --- !u!65 &1070649393
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3705,7 +3705,7 @@ MonoBehaviour:
   returnSpeed: 5
   index: 7
   rotSpeed: 10
-  fireworkAudioManager: {fileID: 0}
+  fireworkAudioManager: {fileID: 1811483869}
 --- !u!65 &1133518527
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4128,7 +4128,7 @@ MonoBehaviour:
   returnSpeed: 5
   index: 0
   rotSpeed: 10
-  fireworkAudioManager: {fileID: 0}
+  fireworkAudioManager: {fileID: 1811483869}
 --- !u!212 &1211620354
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4345,7 +4345,7 @@ MonoBehaviour:
   returnSpeed: 5
   index: 5
   rotSpeed: 10
-  fireworkAudioManager: {fileID: 0}
+  fireworkAudioManager: {fileID: 1811483869}
 --- !u!212 &1283982455
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4474,7 +4474,7 @@ MonoBehaviour:
   returnSpeed: 5
   index: 6
   rotSpeed: 10
-  fireworkAudioManager: {fileID: 0}
+  fireworkAudioManager: {fileID: 1811483869}
 --- !u!212 &1383314227
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10927,7 +10927,7 @@ MonoBehaviour:
   returnSpeed: 5
   index: 10
   rotSpeed: 10
-  fireworkAudioManager: {fileID: 0}
+  fireworkAudioManager: {fileID: 1811483869}
 --- !u!212 &1746126679
 SpriteRenderer:
   m_ObjectHideFlags: 0
