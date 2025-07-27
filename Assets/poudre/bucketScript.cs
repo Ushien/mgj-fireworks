@@ -36,7 +36,7 @@ public class bucketScript : MonoBehaviour
                 if (hit.collider.gameObject == gameObject)
                 {
                     isDragging = true;
-                    transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y-70f);
+                    transform.position = new Vector3(transform.position.x, transform.position.y, basePosition.z-40f);
                     pouring.Instance.SetParticleColor(index);
                     pouring.Instance.hasBucket = true;
                     //transform.rotation = Quaternion.Euler(0,0,120);
@@ -57,7 +57,7 @@ public class bucketScript : MonoBehaviour
 
         if (isDragging)
         {
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0,0,120), Time.deltaTime * rotSpeed);
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0,0,130), Time.deltaTime * rotSpeed);
             Vector3 mouseWorldPos = powderCamera.ScreenToWorldPoint(Input.mousePosition);
             transform.position = new Vector3 (mouseWorldPos.x, mouseWorldPos.y, transform.position.z);
             // // Project mouse position to some plane to get world position for dragging
