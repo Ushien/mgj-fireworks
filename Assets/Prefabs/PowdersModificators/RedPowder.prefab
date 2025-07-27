@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attachedFirework: {fileID: 0}
+  colorStrength: 256

@@ -8,10 +8,12 @@ public class RedPowder : PowderModificator
     {
         // Change la couleur du projectile principal
         ParticleSystem.MainModule mm = attachedFirework.GetComponent<ParticleSystem>().main;
-        mm.startColor = new ParticleSystem.MinMaxGradient(new Color((mm.startColor.color.r + 1) / 2, mm.startColor.color.g, mm.startColor.color.b));
+        //mm.startColor = new ParticleSystem.MinMaxGradient(new Color((mm.startColor.color.r + 1) / 2, mm.startColor.color.g, mm.startColor.color.b));
 
         //
         Vector3 rgbVector = new Vector3(mm.startColor.color.r + colorStrength, mm.startColor.color.g, mm.startColor.color.b);
+        rgbVector = rgbVector.normalized * 256*3f;
+        mm.startColor = new ParticleSystem.MinMaxGradient(new Color(rgbVector.x, rgbVector.y, rgbVector.z));
 
         // Change la couleur du trail
         var subEmitters = attachedFirework.subEmitters;
