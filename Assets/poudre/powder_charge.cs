@@ -25,6 +25,7 @@ public class powder_charge : MonoBehaviour
     public GameObject powderUI;
     public GameObject powderPrefab;
     public GameObject powderStudio;
+    public List<GameObject> flags;
     public List<GameObject> toFade;
     public GameObject studioBckgrnd;
     private int fading = 0;
@@ -107,11 +108,31 @@ public class powder_charge : MonoBehaviour
 
     public void AddCharge(int Index)
     {
+        if(chargeCount >= maxCharge)
+            return;
         BaseShootingSystem.Instance.powderList.Add(powderPrefabs[Index]);
-        GameObject instance = Instantiate(flagGO[Index], meche);
-        instance.transform.position = new Vector3(meche.position.x + width / 2 - (width / maxCharge) * chargeCount, meche.position.y + yOffset, meche.position.z);
+        flags[chargeCount].SetActive(true);
+
+        // Couleur du fanion
+        Renderer renderer = flags[chargeCount].GetComponent<Renderer>();
+        if (renderer != null)
+        {
+            renderer.material.color = pouring.Instance.colors[Index];
+        }
+
         chargeCount++;
 
+    }
+
+    public void ResetCharge(){
+        foreach (GameObject flag in flags)
+        {
+            flag.SetActive(false);
+        }
+
+        chargeCount = 0;
+        currentCharge = 0;
+        BaseShootingSystem.Instance.powderList.Clear();
     }
 
     public void DeactivatePowderUI()
@@ -141,5 +162,9 @@ public class powder_charge : MonoBehaviour
     {
         yield return new WaitForSeconds(seconds);
         inStudio = true;
+    }
+
+    public void PutCap(){
+
     }
 }
