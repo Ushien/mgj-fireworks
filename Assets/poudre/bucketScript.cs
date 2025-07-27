@@ -36,6 +36,7 @@ public class bucketScript : MonoBehaviour
                 if (hit.collider.gameObject == gameObject)
                 {
                     isDragging = true;
+                    transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y-70f);
                     pouring.Instance.SetParticleColor(index);
                     pouring.Instance.hasBucket = true;
                     //transform.rotation = Quaternion.Euler(0,0,120);
@@ -47,8 +48,10 @@ public class bucketScript : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
-            isDragging = false;
-            //transform.rotation = Quaternion.Euler(0,0,0);
+            if(isDragging){
+                isDragging = false;
+                transform.position = new Vector3 (transform.position.x, transform.position.y, basePosition.z);
+            }
             pouring.Instance.hasBucket = false;
         }
 

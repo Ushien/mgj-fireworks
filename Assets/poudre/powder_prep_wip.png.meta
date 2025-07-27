@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 41ec44552f514c14593bad8d1daca6cc
+guid: 7c4ab35b95d9b4c40a0ce85ef4256b81
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 495367587157968522
-    second: hint_0
+      213: -922374995466466621
+    second: powder_prep_wip_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: hint_0
+      name: powder_prep_wip_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 800
-        height: 800
+        height: 600
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a860bc92236efd600800000000000000
-      internalID: 495367587157968522
+      spriteID: 3cac48d14d01333f0800000000000000
+      internalID: -922374995466466621
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      hint_0: 495367587157968522
+      powder_prep_wip_0: -922374995466466621
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

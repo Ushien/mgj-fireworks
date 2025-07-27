@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8195553125327974305}
   - component: {fileID: 6849510367744307928}
   m_Layer: 0
-  m_Name: multi
+  m_Name: Yellow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,12 +76,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -8294512872886869402, guid: 57a93aed87406c04e86fb222ceee9bc5, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: -3386788403136154940, guid: b38a46796b3d8124db29383e057f19e1, type: 3}
+  m_Color: {r: 1, g: 0.8352941, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3.51, y: 4.95}
+  m_Size: {x: 3.51, y: 5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

@@ -58,7 +58,8 @@ public class pouring : MonoBehaviour
             return;
         }
 
-        if(index == 3)
+        // effet rainbow
+        if(index == 7)
             colorOverLifetime.enabled = true;
         else
             colorOverLifetime.enabled = false;
