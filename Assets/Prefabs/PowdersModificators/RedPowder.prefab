@@ -44,5 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba5151194ca0dc2469ceaeb043859924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FireworkScript: {fileID: 0}
   attachedFirework: {fileID: 0}
-  colorStrength: 256
+  colorStrength: 2

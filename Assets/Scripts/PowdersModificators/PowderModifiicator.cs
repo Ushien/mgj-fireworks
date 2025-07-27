@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class PowderModificator : MonoBehaviour
 {
+    public FireworkProjectile FireworkScript;
     public ParticleSystem attachedFirework;
     public virtual void ApplyModifier()
     {

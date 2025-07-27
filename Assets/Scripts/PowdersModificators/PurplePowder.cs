@@ -24,13 +24,18 @@ public class PurplePowder : PowderModificator
 
         ParticleSystem newBurst = Instantiate(subBurst, mainBurst.transform);
         newBurst.name = "Burst";
+        // Set a new start color
+
         ParticleSystem.SubEmittersModule subEmitters = mainBurst.subEmitters;
         subEmitters.AddSubEmitter(newBurst, ParticleSystemSubEmitterType.Death, ParticleSystemSubEmitterProperties.InheritNothing);
 
         ParticleSystem.MainModule mm = newBurst.transform.Find("Trails").GetComponent<ParticleSystem>().main;
         mm.startSize = newBurst.transform.parent.Find("Trails").GetComponent<ParticleSystem>().main.startSize.constant / 2f;
         mm = newBurst.GetComponent<ParticleSystem>().main;
+        
         mm.startSize = newBurst.transform.parent.GetComponent<ParticleSystem>().main.startSize.constant / 2f;
+        Vector3 finalSubColor = FireworkScript.finalColor.normalized;
+        mm.startColor = new ParticleSystem.MinMaxGradient(new Color(finalSubColor.x, finalSubColor.y, finalSubColor.z));
 
         foreach (PowderModificator appliedPowder in appliedPowders)
         {
