@@ -26,7 +26,8 @@ public class YellowPowder : PowderModificator
             ParticleSystem.ShapeModule shapeModule = burstSystem.shape;
             shapeModule.shapeType = ParticleSystemShapeType.SpriteRenderer;
             shapeModule.meshShapeType = ParticleSystemMeshShapeType.Triangle;
-            int randomIndex = Random.Range(0, textures.Count); 
+            int randomIndex = Random.Range(0, textures.Count-1); 
+            Debug.Log(randomIndex);
             shapeModule.spriteRenderer = spritesRenderers[randomIndex];
             shapeModule.texture = textures[randomIndex];
             shapeModule.scale = new Vector3(10,10,10);
