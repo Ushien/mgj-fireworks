@@ -9918,7 +9918,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6003737343460530987, guid: 76373b868592a52428c39d2c01b13b67, type: 3}
       propertyPath: ShapeModule.type
-      value: 20
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6003737343460530987, guid: 76373b868592a52428c39d2c01b13b67, type: 3}
       propertyPath: ShapeModule.m_Scale.x
@@ -9939,6 +9939,10 @@ PrefabInstance:
     - target: {fileID: 6003737343460530987, guid: 76373b868592a52428c39d2c01b13b67, type: 3}
       propertyPath: ShapeModule.placementMode
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6003737343460530987, guid: 76373b868592a52428c39d2c01b13b67, type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6003737343460530987, guid: 76373b868592a52428c39d2c01b13b67, type: 3}
       propertyPath: ShapeModule.m_SpriteRenderer
@@ -9970,7 +9974,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6003737343460530987, guid: 76373b868592a52428c39d2c01b13b67, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
-      value: 100
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 294235466672363517, guid: 76373b868592a52428c39d2c01b13b67, type: 3}
