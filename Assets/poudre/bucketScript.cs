@@ -8,6 +8,7 @@ public class bucketScript : MonoBehaviour
     public Vector3 basePosition;
     public float returnSpeed = 5f;
     public int index;
+    public float rotSpeed = 1f;
 
     void Start()
     {
@@ -18,11 +19,11 @@ public class bucketScript : MonoBehaviour
     {
         if(!isDragging){
             transform.position = Vector3.Lerp(transform.position, basePosition, Time.deltaTime * returnSpeed);
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0,0,0), Time.deltaTime * rotSpeed);
         }
 
         if (powderCamera == null)
         {
-            Debug.LogWarning("powderCamera not assigned!");
             return;
         }
 
@@ -37,7 +38,7 @@ public class bucketScript : MonoBehaviour
                     isDragging = true;
                     pouring.Instance.SetParticleColor(index);
                     pouring.Instance.hasBucket = true;
-                    transform.rotation = Quaternion.Euler(0,0,120);
+                    //transform.rotation = Quaternion.Euler(0,0,120);
                     // Calculate offset between object position and hit point
                     offset = transform.position - hit.point;
                 }
@@ -47,12 +48,13 @@ public class bucketScript : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             isDragging = false;
-            transform.rotation = Quaternion.Euler(0,0,0);
+            //transform.rotation = Quaternion.Euler(0,0,0);
             pouring.Instance.hasBucket = false;
         }
 
         if (isDragging)
         {
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0,0,120), Time.deltaTime * rotSpeed);
             Vector3 mouseWorldPos = powderCamera.ScreenToWorldPoint(Input.mousePosition);
             transform.position = new Vector3 (mouseWorldPos.x, mouseWorldPos.y, transform.position.z);
             // // Project mouse position to some plane to get world position for dragging

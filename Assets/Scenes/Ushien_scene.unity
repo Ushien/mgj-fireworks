@@ -1082,6 +1082,7 @@ MonoBehaviour:
   basePosition: {x: 0, y: 0, z: 0}
   returnSpeed: 5
   index: 1
+  rotSpeed: 10
 --- !u!212 &555183061
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1527,6 +1528,7 @@ MonoBehaviour:
   basePosition: {x: 0, y: 0, z: 0}
   returnSpeed: 5
   index: 2
+  rotSpeed: 10
 --- !u!65 &756905237
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2721,6 +2723,7 @@ MonoBehaviour:
   basePosition: {x: 0, y: 0, z: 0}
   returnSpeed: 5
   index: 0
+  rotSpeed: 10
 --- !u!65 &1070649393
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2880,6 +2883,7 @@ MonoBehaviour:
   basePosition: {x: 0, y: 0, z: 0}
   returnSpeed: 5
   index: 3
+  rotSpeed: 10
 --- !u!65 &1133518527
 BoxCollider:
   m_ObjectHideFlags: 0

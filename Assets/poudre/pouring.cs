@@ -19,7 +19,6 @@ public class pouring : MonoBehaviour
     void Update()
     {
         if(sandSound.enabled && system.particleCount != 0){
-            Debug.Log(system.particleCount);
             sandSound.volume = (system.particleCount/4000f)*0.5f;
             }
         if (system.particleCount > 0 && !sandSound.enabled)
