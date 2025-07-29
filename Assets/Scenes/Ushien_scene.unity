@@ -2257,6 +2257,7 @@ GameObject:
   m_Component:
   - component: {fileID: 793653098}
   - component: {fileID: 793653099}
+  - component: {fileID: 793653100}
   m_Layer: 0
   m_Name: Mixing Manager
   m_TagString: Untagged
@@ -2367,6 +2368,35 @@ MonoBehaviour:
   powderCamera: {fileID: 1495088153}
   shootCamera: {fileID: 1997103074}
   lerpSpeed: 3
+--- !u!114 &793653100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 793653097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98d567ede77171c43becc4723961d806, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  system: {fileID: 1690695066}
+  colors:
+  - {r: 0, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0.16466069, b: 1, a: 1}
+  - {r: 0.3584906, g: 0.07485767, b: 0, a: 1}
+  - {r: 0, g: 1, b: 0.9278722, a: 1}
+  - {r: 0.075834274, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0.4933105, b: 0, a: 1}
+  - {r: 0.5251241, g: 0, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 0.77521867, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0.968781, a: 1}
+  zDistanceFromCamera: 10
+  pouringCamera: {fileID: 1495088153}
+  hasBucket: 0
 --- !u!1 &833792146
 GameObject:
   m_ObjectHideFlags: 0
@@ -3549,10 +3579,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: powder_charge, Assembly-CSharp
-        m_MethodName: ActivatePowderUI
-        m_Mode: 1
+      - m_Target: {fileID: 793653099}
+        m_TargetAssemblyTypeName: MixingManager, Assembly-CSharp
+        m_MethodName: Fade
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3561,13 +3591,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: powder_charge, Assembly-CSharp
-        m_MethodName: Fade
-        m_Mode: 6
+      - m_Target: {fileID: 793653099}
+        m_TargetAssemblyTypeName: MixingManager, Assembly-CSharp
+        m_MethodName: ActivatePowderUI
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -5168,8 +5198,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: powder_charge, Assembly-CSharp
+      - m_Target: {fileID: 793653099}
+        m_TargetAssemblyTypeName: MixingManager, Assembly-CSharp
+        m_MethodName: Fade
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 793653099}
+        m_TargetAssemblyTypeName: MixingManager, Assembly-CSharp
         m_MethodName: DeactivatePowderUI
         m_Mode: 1
         m_Arguments:
@@ -5178,7 +5220,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 610257327}
         m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
@@ -5203,18 +5245,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: powder_charge, Assembly-CSharp
-        m_MethodName: Fade
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1386056170
 MonoBehaviour:
@@ -5409,7 +5439,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1495088154}
   - component: {fileID: 1495088153}
-  - component: {fileID: 1495088152}
   - component: {fileID: 1495088151}
   m_Layer: 0
   m_Name: Powder Camera
@@ -5462,14 +5491,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!81 &1495088152
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1495088150}
-  m_Enabled: 1
 --- !u!20 &1495088153
 Camera:
   m_ObjectHideFlags: 0
@@ -5680,10 +5701,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: powder_charge, Assembly-CSharp
-        m_MethodName: ActivatePowderUI
-        m_Mode: 1
+      - m_Target: {fileID: 793653099}
+        m_TargetAssemblyTypeName: MixingManager, Assembly-CSharp
+        m_MethodName: Fade
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5692,13 +5713,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: powder_charge, Assembly-CSharp
-        m_MethodName: Fade
-        m_Mode: 6
+      - m_Target: {fileID: 793653099}
+        m_TargetAssemblyTypeName: MixingManager, Assembly-CSharp
+        m_MethodName: ActivatePowderUI
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -5716,8 +5737,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: powder_charge, Assembly-CSharp
+      - m_Target: {fileID: 793653099}
+        m_TargetAssemblyTypeName: MixingManager, Assembly-CSharp
         m_MethodName: ResetCharge
         m_Mode: 1
         m_Arguments:
@@ -6200,7 +6221,6 @@ GameObject:
   - component: {fileID: 1690695068}
   - component: {fileID: 1690695066}
   - component: {fileID: 1690695067}
-  - component: {fileID: 1690695065}
   - component: {fileID: 1690695069}
   m_Layer: 0
   m_Name: Powder Particles
@@ -6209,36 +6229,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1690695065
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1690695064}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98d567ede77171c43becc4723961d806, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  system: {fileID: 1690695066}
-  colors:
-  - {r: 0, g: 0, b: 0, a: 1}
-  - {r: 0, g: 0.16466069, b: 1, a: 1}
-  - {r: 0.3584906, g: 0.07485767, b: 0, a: 1}
-  - {r: 0, g: 1, b: 0.9278722, a: 1}
-  - {r: 0.075834274, g: 1, b: 0, a: 1}
-  - {r: 1, g: 0.4933105, b: 0, a: 1}
-  - {r: 0.5251241, g: 0, b: 1, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 1, g: 0, b: 0, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 1, g: 0.77521867, b: 0, a: 1}
-  - {r: 1, g: 0, b: 0.968781, a: 1}
-  zDistanceFromCamera: 10
-  pouringCamera: {fileID: 1495088153}
-  hasBucket: 0
-  sandSound: {fileID: 1690695069}
 --- !u!198 &1690695066
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -11649,7 +11639,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1811483871}
   - component: {fileID: 1811483870}
+  - component: {fileID: 1811483873}
   - component: {fileID: 1811483869}
+  - component: {fileID: 1811483872}
   m_Layer: 0
   m_Name: Audio Manager
   m_TagString: Untagged
@@ -11789,6 +11781,116 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2012126785}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1811483872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1811483868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 407faf8e080f5c046bad5c99fd81663a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sandSound: {fileID: 1811483873}
+--- !u!82 &1811483873
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1811483868}
+  m_Enabled: 0
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: ba10815c1cacba548b0f76f051af2d1e, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1823126645
 GameObject:
   m_ObjectHideFlags: 0

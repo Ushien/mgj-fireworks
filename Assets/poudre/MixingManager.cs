@@ -3,19 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using ShootingSystem;
 
-public class powder_charge : MonoBehaviour
+public class MixingManager : MonoBehaviour
 {
     // Variables
     // =========
     public Transform meche;
     public List<PowderModificator> powderPrefabs;
-    public static powder_charge Instance;
+    public static MixingManager Instance;
     public int maxCharge;
     public int chargeNeed;
     public int currentCharge = 0;
     public List<GameObject> flagGO;
     public int chargeCount = 0;
-    private float width;
     public float xOffset = 10f;
     public float yOffset = -10f;
     public float fadeSpeed = 3f;
@@ -40,11 +39,6 @@ public class powder_charge : MonoBehaviour
     void Awake()
     {
         Instance = this;
-    }
-
-    void Start()
-    {
-        width = meche.GetComponent<SpriteRenderer>().bounds.size.x - xOffset;
     }
 
     void Update()

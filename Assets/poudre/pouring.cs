@@ -9,7 +9,6 @@ public class pouring : MonoBehaviour
     public float zDistanceFromCamera = 10f;
     public Camera pouringCamera;
     public bool hasBucket = false;
-    public AudioSource sandSound;
 
     void Awake()
     {
@@ -18,13 +17,13 @@ public class pouring : MonoBehaviour
 
     void Update()
     {
-        if(sandSound.enabled && system.particleCount != 0){
-            sandSound.volume = (system.particleCount/4000f)*0.5f;
+        if(AudioManager.Instance.sandSound.enabled && system.particleCount != 0){
+            AudioManager.Instance.sandSound.volume = (system.particleCount/4000f)*0.5f;
             }
-        if (system.particleCount > 0 && !sandSound.enabled)
-            sandSound.enabled = true;
-        if (system.particleCount == 0 && sandSound.enabled)
-            sandSound.enabled = false;
+        if (system.particleCount > 0 && !AudioManager.Instance.sandSound.enabled)
+            AudioManager.Instance.sandSound.enabled = true;
+        if (system.particleCount == 0 && AudioManager.Instance.sandSound.enabled)
+            AudioManager.Instance.sandSound.enabled = false;
         // Get world position of mouse
         Vector3 mouseScreenPos = Input.mousePosition;
         mouseScreenPos.z = zDistanceFromCamera;
@@ -35,22 +34,11 @@ public class pouring : MonoBehaviour
         // Move emitter shape
         var shape = system.shape;
         shape.position = localPos;
-
-        // Update emission rate
-        var emission = system.emission;
-        if (Input.GetMouseButtonDown(0) && hasBucket && powder_charge.Instance.inStudio)
-        {
-            emission.rateOverTime = 2000f;
-        }
-        else if (Input.GetMouseButtonUp(0))
-        {
-            emission.rateOverTime = 0f;
-        }
     }
 
     public void SetParticleColor(int index)
     {
-        powder_charge.Instance.currentCharge = 0;
+        MixingManager.Instance.currentCharge = 0;
         var colorOverLifetime = system.colorOverLifetime;
         if (index < 0 || index >= colors.Count)
         {
@@ -66,6 +54,11 @@ public class pouring : MonoBehaviour
         Color newColor = colors[index];
         var main = system.main;
         main.startColor = newColor;
-        powder_charge.Instance.currentIndex = index;
+        MixingManager.Instance.currentIndex = index;
+    }
+
+    public void SetParticleAmount(int amount){
+        var emission = system.emission;
+        emission.rateOverTime = amount;
     }
 }

@@ -18,7 +18,7 @@ public class bucketScript : MonoBehaviour
 
     void Update()
     {
-        if(!powder_charge.Instance.inStudio)
+        if(!MixingManager.Instance.inStudio)
             return;
         if(!isDragging){
             transform.position = Vector3.Lerp(transform.position, basePosition, Time.deltaTime * returnSpeed);
@@ -46,6 +46,7 @@ public class bucketScript : MonoBehaviour
                     transform.position = new Vector3(transform.position.x, transform.position.y, basePosition.z-40f);
                     pouring.Instance.SetParticleColor(index);
                     pouring.Instance.hasBucket = true;
+                    pouring.Instance.SetParticleAmount(2000);
                     //transform.rotation = Quaternion.Euler(0,0,120);
                     // Calculate offset between object position and hit point
                     offset = transform.position - hit.point;
@@ -60,6 +61,7 @@ public class bucketScript : MonoBehaviour
                 transform.position = new Vector3 (transform.position.x, transform.position.y, basePosition.z);
             }
             pouring.Instance.hasBucket = false;
+            pouring.Instance.SetParticleAmount(0);
         }
 
         if (isDragging)
