@@ -98,7 +98,7 @@ public class Bucket : MonoBehaviour
     void SelectBucket()
     {
         isGrabbed = true;
-        FireworkAudioManager.Instance.PlayBipSound();
+        AudioManager.Instance.PlayTakeSound();
         transform.position = new Vector3(transform.position.x, transform.position.y, basePosition.z + frontOffset); // Amène devant la poudre
         PowderManager.Instance.ChangePowder(index);
     }
@@ -108,6 +108,7 @@ public class Bucket : MonoBehaviour
     void DeselectBucket()
     {
         isGrabbed = false;
+        AudioManager.Instance.PlayOffSound();
         transform.position = new Vector3 (transform.position.x, transform.position.y, basePosition.z); // Amène derrière la poudre
         PowderManager.Instance.SetParticleAmount(0);
     }

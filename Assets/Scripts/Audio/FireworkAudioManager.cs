@@ -10,9 +10,6 @@ public class FireworkAudioManager : MonoBehaviour
 
     [SerializeField]
     private AudioClip[] subExplosionSounds;
-    
-    [SerializeField]
-    private AudioClip bipSound;
 
     private AudioSource audioSource;
 
@@ -61,12 +58,4 @@ public class FireworkAudioManager : MonoBehaviour
         }
     }
 
-    public void PlayBipSound()
-    {
-        if (!audioSource.isPlaying)
-        {
-            audioSource.clip = bipSound;
-            audioSource.Play();
-        }
-    }
 }

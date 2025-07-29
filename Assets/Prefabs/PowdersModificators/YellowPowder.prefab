@@ -44,4 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8e9b7f524eea93438a1fd29588febd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FireworkScript: {fileID: 0}
   attachedFirework: {fileID: 0}
+  spritesRenderers: []
+  textures: []

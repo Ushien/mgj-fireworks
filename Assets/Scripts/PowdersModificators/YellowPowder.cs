@@ -3,12 +3,19 @@ using UnityEngine;
 
 public class YellowPowder : PowderModificator
 {
+    [System.Serializable]
+    public class YellowAsset
+    {
+        public SpriteRenderer spriteRenderer;
+        public Texture2D texture;
+        public Vector3 size;
+        public int particles;
+    }
+
     // il faut mettre la poudre dans la scene et ensuite rajoute la texture et le sprite renderer.
     [SerializeField]
-    List<SpriteRenderer> spritesRenderers;
-    
-    [SerializeField]
-    List<Texture2D> textures;
+    List<YellowAsset> yellowAsset;
+
     override public void ApplyModifier()
     {
         if (attachedFirework.name == "Fireworks(Clone)")
@@ -18,19 +25,26 @@ public class YellowPowder : PowderModificator
             ParticleSystem burstSystem = subEmitters.GetSubEmitterSystem(1);
             ParticleSystem.EmissionModule emission = burstSystem.emission;
             ParticleSystem.Burst[] bursts = new ParticleSystem.Burst[emission.burstCount];
-            emission.GetBursts(bursts);
-            float numEmitted = bursts[0].count.constant;
-            numEmitted = 750;
-            bursts[0].count = new ParticleSystem.MinMaxCurve(numEmitted);
-            emission.SetBursts(bursts);
+
+            // Modification du module shape
             ParticleSystem.ShapeModule shapeModule = burstSystem.shape;
             shapeModule.shapeType = ParticleSystemShapeType.SpriteRenderer;
             shapeModule.meshShapeType = ParticleSystemMeshShapeType.Triangle;
-            int randomIndex = Random.Range(0, textures.Count-1); 
-            Debug.Log(randomIndex);
-            shapeModule.spriteRenderer = spritesRenderers[randomIndex];
-            shapeModule.texture = textures[randomIndex];
-            shapeModule.scale = new Vector3(10,10,10);
+            shapeModule.rotation = new Vector3(-90f, 180f, 0f);
+
+            // Assignation de la texture
+            int randomIndex = Random.Range(0, yellowAsset.Count); 
+            shapeModule.spriteRenderer = yellowAsset[randomIndex].spriteRenderer;
+            shapeModule.texture = yellowAsset[randomIndex].texture;
+            shapeModule.scale = yellowAsset[randomIndex].size;
+
+            // Assingation du nombre de particules
+            emission.GetBursts(bursts);
+            float numEmitted = bursts[0].count.constant;
+            numEmitted = yellowAsset[randomIndex].particles;
+            bursts[0].count = new ParticleSystem.MinMaxCurve(numEmitted);
+            emission.SetBursts(bursts);
+
         }
     }
 }
