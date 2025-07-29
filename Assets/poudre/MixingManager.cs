@@ -111,7 +111,7 @@ public class MixingManager : MonoBehaviour
         Renderer renderer = flags[chargeCount].GetComponent<Renderer>();
         if (renderer != null)
         {
-            renderer.material.color = pouring.Instance.colors[Index];
+            renderer.material.color = PowderManager.Instance.colors[Index];
         }
 
         chargeCount++;

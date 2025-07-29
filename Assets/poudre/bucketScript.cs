@@ -44,9 +44,8 @@ public class bucketScript : MonoBehaviour
                     }
                     isDragging = true;
                     transform.position = new Vector3(transform.position.x, transform.position.y, basePosition.z-40f);
-                    pouring.Instance.SetParticleColor(index);
-                    pouring.Instance.hasBucket = true;
-                    pouring.Instance.SetParticleAmount(2000);
+                    PowderManager.Instance.SetParticleColor(index);
+                    PowderManager.Instance.SetParticleAmount(2000);
                     //transform.rotation = Quaternion.Euler(0,0,120);
                     // Calculate offset between object position and hit point
                     offset = transform.position - hit.point;
@@ -60,8 +59,7 @@ public class bucketScript : MonoBehaviour
                 isDragging = false;
                 transform.position = new Vector3 (transform.position.x, transform.position.y, basePosition.z);
             }
-            pouring.Instance.hasBucket = false;
-            pouring.Instance.SetParticleAmount(0);
+            PowderManager.Instance.SetParticleAmount(0);
         }
 
         if (isDragging)
