@@ -12,11 +12,16 @@ public class PowderManager : MonoBehaviour
     [Header("Particles system and colours")]
     public ParticleSystem system;
     public List<Color> colors;
-    public float sandVolume = 0.2f;
 
-    [Header("Camera parameters")]
-    public Camera powderCamera;
-    public float zDistanceFromCamera = 10f;
+    [SerializeField]
+    private float sandVolume = 0.5f;
+    [SerializeField]
+    private int flux = 2000;
+
+    [Header("Camera")]
+    [SerializeField]
+    private Camera powderCamera;
+    private const float zDistanceFromCamera = 10f;
 
     // --------------------------------------------------------------------------------------------
 
@@ -57,9 +62,6 @@ public class PowderManager : MonoBehaviour
     // ==========================================
     public void SetParticleColor(int index)
     {
-        // Reset de la charge de poudre
-        MixingManager.Instance.currentCharge = 0; // A changer de place
-
         // Effet rainbow
         // -------------
         var colorOverLifetime = system.colorOverLifetime;
@@ -70,9 +72,6 @@ public class PowderManager : MonoBehaviour
         Color newColor = colors[index];
         var main = system.main;
         main.startColor = newColor;
-
-        // Changement de l'index
-        MixingManager.Instance.currentIndex = index; // A changer de place
     }
 
     // Change le flux de particules de poudre

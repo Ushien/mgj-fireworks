@@ -1607,16 +1607,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 555183057}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 002c476140166874f84194cb7e47521b, type: 3}
+  m_Script: {fileID: 11500000, guid: ecaa83ac38973d343b13ad1cbced3309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDragging: 0
-  powderCamera: {fileID: 1495088153}
-  basePosition: {x: 0, y: 0, z: 0}
-  returnSpeed: 5
-  index: 4
-  rotSpeed: 10
   fireworkAudioManager: {fileID: 1811483869}
+  powderCamera: {fileID: 1495088153}
+  rotSpeed: 1
+  returnSpeed: 5
 --- !u!212 &555183061
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1924,16 +1921,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 648480842}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 002c476140166874f84194cb7e47521b, type: 3}
+  m_Script: {fileID: 11500000, guid: ecaa83ac38973d343b13ad1cbced3309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDragging: 0
-  powderCamera: {fileID: 1495088153}
-  basePosition: {x: 0, y: 0, z: 0}
-  returnSpeed: 5
-  index: 11
-  rotSpeed: 10
   fireworkAudioManager: {fileID: 1811483869}
+  powderCamera: {fileID: 1495088153}
+  rotSpeed: 1
+  returnSpeed: 5
 --- !u!212 &648480846
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2053,16 +2047,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 734112809}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 002c476140166874f84194cb7e47521b, type: 3}
+  m_Script: {fileID: 11500000, guid: ecaa83ac38973d343b13ad1cbced3309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDragging: 0
-  powderCamera: {fileID: 1495088153}
-  basePosition: {x: 0, y: 0, z: 0}
-  returnSpeed: 5
-  index: 3
-  rotSpeed: 10
   fireworkAudioManager: {fileID: 1811483869}
+  powderCamera: {fileID: 1495088153}
+  rotSpeed: 1
+  returnSpeed: 5
 --- !u!212 &734112813
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2216,16 +2207,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 756905233}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 002c476140166874f84194cb7e47521b, type: 3}
+  m_Script: {fileID: 11500000, guid: ecaa83ac38973d343b13ad1cbced3309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDragging: 0
-  powderCamera: {fileID: 1495088153}
-  basePosition: {x: 0, y: 0, z: 0}
-  returnSpeed: 5
-  index: 1
-  rotSpeed: 10
   fireworkAudioManager: {fileID: 1811483869}
+  powderCamera: {fileID: 1495088153}
+  rotSpeed: 1
+  returnSpeed: 5
 --- !u!65 &756905237
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2395,7 +2383,8 @@ MonoBehaviour:
   - {r: 1, g: 0.77521867, b: 0, a: 1}
   - {r: 1, g: 0, b: 0.968781, a: 1}
   sandVolume: 0.5
-  pouringCamera: {fileID: 1495088153}
+  flux: 2000
+  powderCamera: {fileID: 1495088153}
   zDistanceFromCamera: 10
 --- !u!1 &833792146
 GameObject:
@@ -2548,16 +2537,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 835266805}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 002c476140166874f84194cb7e47521b, type: 3}
+  m_Script: {fileID: 11500000, guid: ecaa83ac38973d343b13ad1cbced3309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDragging: 0
-  powderCamera: {fileID: 1495088153}
-  basePosition: {x: 0, y: 0, z: 0}
-  returnSpeed: 5
-  index: 9
-  rotSpeed: 10
   fireworkAudioManager: {fileID: 1811483869}
+  powderCamera: {fileID: 1495088153}
+  rotSpeed: 1
+  returnSpeed: 5
 --- !u!212 &835266809
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3106,16 +3092,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 939042806}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 002c476140166874f84194cb7e47521b, type: 3}
+  m_Script: {fileID: 11500000, guid: ecaa83ac38973d343b13ad1cbced3309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDragging: 0
-  powderCamera: {fileID: 1495088153}
-  basePosition: {x: 0, y: 0, z: 0}
-  returnSpeed: 5
-  index: 2
-  rotSpeed: 10
   fireworkAudioManager: {fileID: 1811483869}
+  powderCamera: {fileID: 1495088153}
+  rotSpeed: 1
+  returnSpeed: 5
 --- !u!212 &939042810
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3302,7 +3285,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1041968123}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 774a969aaa8c38f4aa8863004f8b97dd, type: 3}
+  m_Script: {fileID: 11500000, guid: 824c0064d3cfde24aad25d3f18e0ceda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!65 &1041968126
@@ -3751,16 +3734,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1070649389}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 002c476140166874f84194cb7e47521b, type: 3}
+  m_Script: {fileID: 11500000, guid: ecaa83ac38973d343b13ad1cbced3309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDragging: 0
-  powderCamera: {fileID: 1495088153}
-  basePosition: {x: 0, y: 0, z: 0}
-  returnSpeed: 5
-  index: 8
-  rotSpeed: 10
   fireworkAudioManager: {fileID: 1811483869}
+  powderCamera: {fileID: 1495088153}
+  rotSpeed: 1
+  returnSpeed: 5
 --- !u!65 &1070649393
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3912,16 +3892,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1133518523}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 002c476140166874f84194cb7e47521b, type: 3}
+  m_Script: {fileID: 11500000, guid: ecaa83ac38973d343b13ad1cbced3309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDragging: 0
-  powderCamera: {fileID: 1495088153}
-  basePosition: {x: 0, y: 0, z: 0}
-  returnSpeed: 5
-  index: 7
-  rotSpeed: 10
   fireworkAudioManager: {fileID: 1811483869}
+  powderCamera: {fileID: 1495088153}
+  rotSpeed: 1
+  returnSpeed: 5
 --- !u!65 &1133518527
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4335,16 +4312,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1211620350}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 002c476140166874f84194cb7e47521b, type: 3}
+  m_Script: {fileID: 11500000, guid: ecaa83ac38973d343b13ad1cbced3309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDragging: 0
-  powderCamera: {fileID: 1495088153}
-  basePosition: {x: 0, y: 0, z: 0}
-  returnSpeed: 5
-  index: 0
-  rotSpeed: 10
   fireworkAudioManager: {fileID: 1811483869}
+  powderCamera: {fileID: 1495088153}
+  rotSpeed: 1
+  returnSpeed: 5
 --- !u!212 &1211620354
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4726,16 +4700,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1283982451}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 002c476140166874f84194cb7e47521b, type: 3}
+  m_Script: {fileID: 11500000, guid: ecaa83ac38973d343b13ad1cbced3309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDragging: 0
-  powderCamera: {fileID: 1495088153}
-  basePosition: {x: 0, y: 0, z: 0}
-  returnSpeed: 5
-  index: 5
-  rotSpeed: 10
   fireworkAudioManager: {fileID: 1811483869}
+  powderCamera: {fileID: 1495088153}
+  rotSpeed: 1
+  returnSpeed: 5
 --- !u!212 &1283982455
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4942,16 +4913,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1383314223}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 002c476140166874f84194cb7e47521b, type: 3}
+  m_Script: {fileID: 11500000, guid: ecaa83ac38973d343b13ad1cbced3309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDragging: 0
-  powderCamera: {fileID: 1495088153}
-  basePosition: {x: 0, y: 0, z: 0}
-  returnSpeed: 5
-  index: 6
-  rotSpeed: 10
   fireworkAudioManager: {fileID: 1811483869}
+  powderCamera: {fileID: 1495088153}
+  rotSpeed: 1
+  returnSpeed: 5
 --- !u!212 &1383314227
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11292,16 +11260,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1746126675}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 002c476140166874f84194cb7e47521b, type: 3}
+  m_Script: {fileID: 11500000, guid: ecaa83ac38973d343b13ad1cbced3309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDragging: 0
-  powderCamera: {fileID: 1495088153}
-  basePosition: {x: 0, y: 0, z: 0}
-  returnSpeed: 5
-  index: 10
-  rotSpeed: 10
   fireworkAudioManager: {fileID: 1811483869}
+  powderCamera: {fileID: 1495088153}
+  rotSpeed: 1
+  returnSpeed: 5
 --- !u!212 &1746126679
 SpriteRenderer:
   m_ObjectHideFlags: 0
