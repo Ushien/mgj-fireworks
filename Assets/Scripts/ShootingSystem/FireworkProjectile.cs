@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Utils;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 namespace ShootingSystem {
     public class FireworkProjectile : MonoBehaviour
@@ -11,7 +13,10 @@ namespace ShootingSystem {
         private Vector2 startPosition; /// The starting position of the projectile.
         [SerializeField]
         private List<PowderModificator> powderList;
-        public Vector3 finalColor = new Vector3 (0f, 0f, 0f);
+        public Vector3 finalColor = new Vector3 (1f, 1f, 1f);
+        public Material fireworkMaterial;
+        public float emissive = 5f;
+
 
 
         /// <summary>
@@ -35,6 +40,7 @@ namespace ShootingSystem {
                 {
                     purplePowders.Add(powder);
                 }
+
                 else
                 {
                     otherPowders.Add(powder);
@@ -70,7 +76,7 @@ namespace ShootingSystem {
             Debug.Log(finalColor);
             // // Change la couleur du projectile principal
             ParticleSystem.MainModule mm = attachedFirework.GetComponent<ParticleSystem>().main;
-            finalColor = finalColor.normalized;
+            finalColor = finalColor.normalized*3f;
             mm.startColor = new ParticleSystem.MinMaxGradient(new Color(finalColor.x, finalColor.y, finalColor.z));
 
             // Change la couleur du trail
@@ -91,6 +97,8 @@ namespace ShootingSystem {
                 ParticleSystem.MainModule mm3 = trailSystem.main;
                 mm3.startColor = mm.startColor;
             }
+            fireworkMaterial.color = new Color(finalColor.x, finalColor.y, finalColor.z);
+            fireworkMaterial.SetColor("_EmissionColor", new Color(finalColor.x, finalColor.y, finalColor.z)*emissive);
         }
     }
 }

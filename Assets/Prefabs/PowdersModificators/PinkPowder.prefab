@@ -46,3 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FireworkScript: {fileID: 0}
   attachedFirework: {fileID: 0}
+  intensity: 40
+  scatter: 0.2

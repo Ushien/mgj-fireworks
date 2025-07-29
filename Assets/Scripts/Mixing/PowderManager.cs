@@ -3,6 +3,8 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using ShootingSystem;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 // ------------------------------------------------------------------------------------------------
 
@@ -18,7 +20,11 @@ public class PowderManager : MonoBehaviour
     public int charge = 0;        // nombre actuel de charges de la fusée
     public int powderCap;         // quantité de poudre pour une charge
     public int powderCount = 0;   // quantité actuelle de poudre
-    
+
+    [Header("Pink Powder exception")]
+    public float bloomIntensity;
+    public float scatter;
+
     [Header("Instantiation des drapeaux")]
     public Transform meche;
     public List<GameObject> flags;
@@ -31,6 +37,13 @@ public class PowderManager : MonoBehaviour
     public int flux = 2000;
     public List<PowderModificator> powderPrefabs;
     public GameObject powderPrefab;
+    public Volume volume;
+    [SerializeField]
+    private float BloomIntensity = 5f;
+    [SerializeField]
+    private float BloomScatter = 0.3f;
+    public bool isPouring = false;
+    Bloom bloom;
 
     [Header("Camera")]
     [SerializeField]
@@ -132,6 +145,14 @@ public class PowderManager : MonoBehaviour
     {
         if(charge >= maxCharge)
             return;
+
+        // Pink powder exception
+        // ---------------------
+        if(Index == 11 && volume.profile.TryGet(out bloom)){
+            bloom.intensity.value += bloomIntensity;
+            bloom.scatter.value += scatter;
+        }
+
         BaseShootingSystem.Instance.powderList.Add(powderPrefabs[Index]);
         flags[charge].SetActive(true);
         flags[charge].GetComponent<Renderer>().material.color = PowderManager.Instance.colors[Index];
@@ -146,8 +167,18 @@ public class PowderManager : MonoBehaviour
         powderCount = 0;
         foreach (GameObject flag in flags)
             flag.SetActive(false);
+        ResetBloom();
     }
 
+    // Reset du bloom si besoin
+    // ========================
+    private void ResetBloom(){
+        if(volume.profile.TryGet(out bloom))
+        {
+            bloom.intensity.value = BloomIntensity;
+            bloom.scatter.value = BloomScatter;
+        }
+    }
     #endregion
     // --------------------------------------------------------------------------------------------
 }

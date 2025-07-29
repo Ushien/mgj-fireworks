@@ -101,6 +101,7 @@ public class Bucket : MonoBehaviour
         AudioManager.Instance.PlayTakeSound();
         transform.position = new Vector3(transform.position.x, transform.position.y, basePosition.z + frontOffset); // Amène devant la poudre
         PowderManager.Instance.ChangePowder(index);
+        PowderManager.Instance.isPouring = true;
     }
 
     // Déselection du bucket
@@ -111,6 +112,8 @@ public class Bucket : MonoBehaviour
         AudioManager.Instance.PlayOffSound();
         transform.position = new Vector3 (transform.position.x, transform.position.y, basePosition.z); // Amène derrière la poudre
         PowderManager.Instance.SetParticleAmount(0);
+        PowderManager.Instance.powderCount = 0;
+        PowderManager.Instance.isPouring = false;
     }
 
     #endregion
