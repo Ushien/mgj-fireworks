@@ -6,6 +6,6 @@ public class CollisionDetection : MonoBehaviour
     // ===============================================
     void OnParticleCollision(GameObject other)
     {
-        MixingManager.Instance.currentCharge ++;
+        PowderManager.Instance.powderCount ++;
     }
 }

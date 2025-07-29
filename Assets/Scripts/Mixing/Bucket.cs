@@ -43,7 +43,7 @@ public class Bucket : MonoBehaviour
 
     void Update()
     {
-        if(!MixingManager.Instance.inStudio)
+        if(!PowderManager.Instance.inStudio)
             return;
         HandleMoving();
         HandleInput();
@@ -100,10 +100,7 @@ public class Bucket : MonoBehaviour
         isGrabbed = true;
         FireworkAudioManager.Instance.PlayBipSound();
         transform.position = new Vector3(transform.position.x, transform.position.y, basePosition.z + frontOffset); // Amène devant la poudre
-        PowderManager.Instance.SetParticleColor(index);
-        PowderManager.Instance.SetParticleAmount(PowderManager.Instance.flux);
-        MixingManager.Instance.currentCharge = 0;
-        MixingManager.Instance.currentIndex = index;
+        PowderManager.Instance.ChangePowder(index);
     }
 
     // Déselection du bucket

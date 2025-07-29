@@ -1,5 +1,7 @@
 using UnityEngine.UI;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class CameraManager : MonoBehaviour
 {
@@ -13,6 +15,22 @@ public class CameraManager : MonoBehaviour
     private bool goToPowder = false;
     private bool goToShoot = false;
 
+    [Header("fading du studio")]
+    [SerializeField]
+    private float fadeSpeed = 3f;
+    [SerializeField]
+    private float fadeScale = 0.8f;
+    [SerializeField]
+    private List<GameObject> toFade;
+    [SerializeField]
+    private GameObject studioBckgrnd;
+    private bool fading = true;
+    
+    // Camera transition setting
+    public GameObject powderUI;
+    public GameObject powderPrefab;
+    public GameObject powderStudio;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,6 +40,7 @@ public class CameraManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        HandleFading();
         if (goToPowder)
         {
             // lerp position
@@ -73,12 +92,18 @@ public class CameraManager : MonoBehaviour
             goToShoot = true;
             saveCameraOrtho = powderCamera.orthographicSize;
             saveCameraPosition = powderCamera.transform.position;
+            fading = true;
+            PowderManager.Instance.inStudio = false;
+            TogglePowderUI(false);
         }
         else
         {
             goToPowder = true;
             saveCameraOrtho = shootCamera.orthographicSize;
             saveCameraPosition = shootCamera.transform.position;
+            fading = false;
+            StartCoroutine(inStudioDelay(1.5f));
+            TogglePowderUI(true);
         }
     }
 
@@ -101,5 +126,73 @@ public class CameraManager : MonoBehaviour
         shootCamera.orthographicSize = saveCameraOrtho;
         shootCamera.transform.position = saveCameraPosition;
         launchButton.gameObject.SetActive(true);
+    }
+
+    private void HandleFading(){
+        if (fading) {
+            foreach (GameObject objectToFade in toFade)
+            {
+                SpriteRenderer sr = objectToFade.GetComponent<SpriteRenderer>();
+                if (sr != null)
+                {
+                    Color c = sr.color;
+                    float faded = Mathf.Lerp(c.r, 0f, Time.deltaTime * fadeSpeed);
+                    sr.color = new Color(faded, faded, faded, 1f);
+                }
+            }
+
+            // Scale and background fade (keep this if background is still a 3D object)
+            powderStudio.transform.localScale = Vector3.Lerp(powderStudio.transform.localScale,
+                                                            new Vector3(fadeScale, fadeScale, fadeScale),
+                                                            Time.deltaTime * fadeSpeed);
+            
+            SpriteRenderer bgRenderer = studioBckgrnd.GetComponent<SpriteRenderer>();
+            if (bgRenderer != null) {
+                Color bgColor = bgRenderer.color;
+                float newAlpha = Mathf.Lerp(bgColor.a, 0f, Time.deltaTime * fadeSpeed);
+                bgRenderer.color = new Color(bgColor.r, bgColor.g, bgColor.b, newAlpha);
+            }
+        }
+
+        if (!fading){
+            foreach (GameObject objectToFade in toFade)
+            {
+                SpriteRenderer sr = objectToFade.GetComponent<SpriteRenderer>();
+                if (sr != null)
+                {
+                    Color c = sr.color;
+                    float faded = Mathf.Lerp(c.r, 1f, Time.deltaTime * fadeSpeed);
+                    sr.color = new Color(faded, faded, faded, 1f);
+                }
+            }
+
+            // Scale and background fade (keep this if background is still a 3D object)
+            powderStudio.transform.localScale = Vector3.Lerp(powderStudio.transform.localScale,
+                                                            new Vector3(1f, 1f, 1f),
+                                                            Time.deltaTime * fadeSpeed);
+            
+            SpriteRenderer bgRenderer = studioBckgrnd.GetComponent<SpriteRenderer>();
+            if (bgRenderer != null) {
+                Color bgColor = bgRenderer.color;
+                float newAlpha = Mathf.Lerp(bgColor.a, 1f, Time.deltaTime * fadeSpeed);
+                bgRenderer.color = new Color(bgColor.r, bgColor.g, bgColor.b, newAlpha);
+            }
+        }
+    }
+
+    // Toggle powder UI
+    // ================
+    public void TogglePowderUI(bool activate)
+    {
+        powderUI.SetActive(activate);
+        powderPrefab.SetActive(activate);
+    }
+
+    // Activation du studio après un délai de fade
+    // ===========================================
+    private IEnumerator inStudioDelay(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        PowderManager.Instance.inStudio = true;
     }
 }

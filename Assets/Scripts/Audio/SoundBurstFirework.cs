@@ -15,7 +15,7 @@ public class SoundBurstFirework : MonoBehaviour
     }
     void Update()
     {
-        mParticles = new ParticleSystem.Particle[particleSystem.maxParticles];
+        mParticles = new ParticleSystem.Particle[particleSystem.main.maxParticles];
         
         // Verifie pour chaque particule si sa fin de vie est atteinte
         for(int i = 0; i < particleSystem.GetParticles(mParticles); i++)

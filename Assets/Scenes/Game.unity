@@ -1158,17 +1158,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 352354835}
   m_CullTransparentMesh: 1
---- !u!114 &377037882 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4025286708628836191, guid: 0256ddcb3f3534a42a090d9571d19e9e, type: 3}
-  m_PrefabInstance: {fileID: 88377512}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8e9b7f524eea93438a1fd29588febd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &483072117
 GameObject:
   m_ObjectHideFlags: 0
@@ -2244,7 +2233,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 793653098}
-  - component: {fileID: 793653099}
   - component: {fileID: 793653100}
   m_Layer: 0
   m_Name: Mixing Manager
@@ -2268,94 +2256,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2012126785}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &793653099
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 793653097}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c72cf38605f6a0a48a6718543d8e17fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meche: {fileID: 1049895311}
-  powderPrefabs:
-  - {fileID: -457197218137351274, guid: 07ff4ee0aa4ed834a9344f6a8b38c802, type: 3}
-  - {fileID: 5606017946418265550, guid: 98327a1af77ae2340b99e03ebbc32300, type: 3}
-  - {fileID: 308936134418962925, guid: 95e78148f47c6114cac608ad4f1a868c, type: 3}
-  - {fileID: 312506887827149544, guid: bf7c7b346c0e73d48afcba0c3e2fc836, type: 3}
-  - {fileID: 6465763631868277139, guid: dc30e1befd37f08419c282f1fb65ea22, type: 3}
-  - {fileID: 3175499977962507911, guid: a6763552f5e73464ca820b6a91823440, type: 3}
-  - {fileID: 5784449326585124778, guid: 36f83081f3a3bc64d8393fc7d1f462a1, type: 3}
-  - {fileID: 4610993450242905759, guid: 90d27a92b01a02d4a93137a40ce3c645, type: 3}
-  - {fileID: 4846249296703089276, guid: 15a32ebd7b70e454595032a477b3210b, type: 3}
-  - {fileID: 7504913208726293472, guid: d48cafd9377625142bc5e4ffe2feaae7, type: 3}
-  - {fileID: 377037882}
-  - {fileID: 4610993450242905759, guid: 90d27a92b01a02d4a93137a40ce3c645, type: 3}
-  maxCharge: 6
-  chargeNeed: 125
-  currentCharge: 0
-  flagGO:
-  - {fileID: 1900534491439567368, guid: ce9ede94601c0b94c98862032725c1f3, type: 3}
-  - {fileID: 1900534491439567368, guid: b372710aa2bace84c854865c07d2b736, type: 3}
-  - {fileID: 1900534491439567368, guid: b5b528cef2e351b4fafa6c1bca6599da, type: 3}
-  - {fileID: 1900534491439567368, guid: 92ea0d02fed007942aebe6f9105744ba, type: 3}
-  - {fileID: 1900534491439567368, guid: d3220d5fb2543434abafccdfe7f456f2, type: 3}
-  - {fileID: 1900534491439567368, guid: 6b427ef314de26342bd2742941bc322f, type: 3}
-  - {fileID: 1900534491439567368, guid: cedffbea4d11aa54696ce99bd371d01c, type: 3}
-  - {fileID: 1900534491439567368, guid: fdd64bf1588c7474d9f2c73b9edd9ac9, type: 3}
-  - {fileID: 1900534491439567368, guid: bab2f1a5f1a01e44eb33413b750d3b1e, type: 3}
-  - {fileID: 1900534491439567368, guid: 30ff06e3eb7109041a2ec97f16297c5a, type: 3}
-  - {fileID: 1900534491439567368, guid: a4eac5e9d63c47847b0edf54fb230ad7, type: 3}
-  - {fileID: 1900534491439567368, guid: fdd64bf1588c7474d9f2c73b9edd9ac9, type: 3}
-  chargeCount: 0
-  xOffset: 0.8
-  yOffset: 0
-  fadeSpeed: 5
-  fadeScale: 0.8
-  currentIndex: 0
-  overShelf: 0
-  powderUI: {fileID: 103538051}
-  powderPrefab: {fileID: 1690695064}
-  powderStudio: {fileID: 1730563047}
-  flags:
-  - {fileID: 1904861895}
-  - {fileID: 893452224}
-  - {fileID: 1896630564}
-  - {fileID: 240125323}
-  - {fileID: 49864377}
-  - {fileID: 483072117}
-  toFade:
-  - {fileID: 1575026658}
-  - {fileID: 1238743674}
-  - {fileID: 1767142173}
-  - {fileID: 988609834}
-  - {fileID: 1211620350}
-  - {fileID: 756905233}
-  - {fileID: 939042806}
-  - {fileID: 734112809}
-  - {fileID: 555183057}
-  - {fileID: 1283982451}
-  - {fileID: 1383314223}
-  - {fileID: 1133518523}
-  - {fileID: 1070649389}
-  - {fileID: 1746126675}
-  - {fileID: 835266805}
-  - {fileID: 648480842}
-  - {fileID: 893452224}
-  - {fileID: 1904861895}
-  - {fileID: 1896630564}
-  - {fileID: 240125323}
-  - {fileID: 49864377}
-  - {fileID: 483072117}
-  - {fileID: 1049895310}
-  studioBckgrnd: {fileID: 1563354979}
-  inStudio: 0
-  powderCamera: {fileID: 1495088153}
-  shootCamera: {fileID: 1997103074}
-  lerpSpeed: 3
 --- !u!114 &793653100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2368,6 +2268,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98d567ede77171c43becc4723961d806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  powderIndex: 0
+  maxCharge: 6
+  charge: 0
+  powderCap: 100
+  powderCount: 0
+  meche: {fileID: 1049895311}
+  flags:
+  - {fileID: 1904861895}
+  - {fileID: 893452224}
+  - {fileID: 1896630564}
+  - {fileID: 240125323}
+  - {fileID: 49864377}
+  - {fileID: 483072117}
+  sandVolume: 0.5
   system: {fileID: 1690695066}
   colors:
   - {r: 0, g: 0, b: 0, a: 1}
@@ -2382,9 +2296,23 @@ MonoBehaviour:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 0.77521867, b: 0, a: 1}
   - {r: 1, g: 0, b: 0.968781, a: 1}
-  sandVolume: 0.5
   flux: 2000
+  powderPrefabs:
+  - {fileID: -457197218137351274, guid: 07ff4ee0aa4ed834a9344f6a8b38c802, type: 3}
+  - {fileID: 5606017946418265550, guid: 98327a1af77ae2340b99e03ebbc32300, type: 3}
+  - {fileID: 308936134418962925, guid: 95e78148f47c6114cac608ad4f1a868c, type: 3}
+  - {fileID: 312506887827149544, guid: bf7c7b346c0e73d48afcba0c3e2fc836, type: 3}
+  - {fileID: 6465763631868277139, guid: dc30e1befd37f08419c282f1fb65ea22, type: 3}
+  - {fileID: 3175499977962507911, guid: a6763552f5e73464ca820b6a91823440, type: 3}
+  - {fileID: -4382250018187464012, guid: e7d628e0d014900438f2feef5f0fb80e, type: 3}
+  - {fileID: 5784449326585124778, guid: 36f83081f3a3bc64d8393fc7d1f462a1, type: 3}
+  - {fileID: 4610993450242905759, guid: 90d27a92b01a02d4a93137a40ce3c645, type: 3}
+  - {fileID: 4846249296703089276, guid: 15a32ebd7b70e454595032a477b3210b, type: 3}
+  - {fileID: 7504913208726293472, guid: d48cafd9377625142bc5e4ffe2feaae7, type: 3}
+  - {fileID: 4025286708628836191, guid: 0256ddcb3f3534a42a090d9571d19e9e, type: 3}
+  powderPrefab: {fileID: 1690695064}
   powderCamera: {fileID: 1495088153}
+  inStudio: 0
 --- !u!1 &833792146
 GameObject:
   m_ObjectHideFlags: 0
@@ -3561,31 +3489,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 793653099}
-        m_TargetAssemblyTypeName: MixingManager, Assembly-CSharp
-        m_MethodName: Fade
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 793653099}
-        m_TargetAssemblyTypeName: MixingManager, Assembly-CSharp
-        m_MethodName: ActivatePowderUI
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1811483875}
         m_TargetAssemblyTypeName: ShutThemeSound, Assembly-CSharp
         m_MethodName: ShutSound
         m_Mode: 1
@@ -5165,22 +5069,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 793653099}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MixingManager, Assembly-CSharp
         m_MethodName: Fade
         m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 793653099}
-        m_TargetAssemblyTypeName: MixingManager, Assembly-CSharp
-        m_MethodName: DeactivatePowderUI
-        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5205,6 +5097,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: CameraManager, Assembly-CSharp
         m_MethodName: SwitchCamera
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: MixingManager, Assembly-CSharp
+        m_MethodName: TogglePowderUI
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5668,30 +5572,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 793653099}
-        m_TargetAssemblyTypeName: MixingManager, Assembly-CSharp
-        m_MethodName: Fade
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 793653099}
-        m_TargetAssemblyTypeName: MixingManager, Assembly-CSharp
-        m_MethodName: ActivatePowderUI
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1156001264}
         m_TargetAssemblyTypeName: ShootingSystem.BaseShootingSystem, Assembly-CSharp
         m_MethodName: flushPowderList
@@ -5704,8 +5584,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 793653099}
-        m_TargetAssemblyTypeName: MixingManager, Assembly-CSharp
+      - m_Target: {fileID: 793653100}
+        m_TargetAssemblyTypeName: PowderManager, Assembly-CSharp
         m_MethodName: ResetCharge
         m_Mode: 1
         m_Arguments:
@@ -11530,8 +11410,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 570931158acb9244e909cbda0b84c3bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionSounds: []
-  subExplosionSounds: []
+  explosionSounds:
+  - {fileID: 8300000, guid: 36b1003b7e35adf45844311750c078f3, type: 3}
+  - {fileID: 8300000, guid: e429710d4fea29a43ab34d213d9d44f7, type: 3}
+  subExplosionSounds:
+  - {fileID: 8300000, guid: bb265858e5472544584aa48fe50f3653, type: 3}
   bipSound: {fileID: 8300000, guid: 085281fb34d4b2540829fdc35c42a930, type: 3}
   character1Animator: {fileID: 1648277766}
   character2Animator: {fileID: 512036289}
@@ -11998,6 +11881,36 @@ MonoBehaviour:
   shootCamera: {fileID: 1997103074}
   lerpSpeed: 5
   launchButton: {fileID: 1386056169}
+  fadeSpeed: 3
+  fadeScale: 0.8
+  toFade:
+  - {fileID: 1575026658}
+  - {fileID: 1049895310}
+  - {fileID: 1904861895}
+  - {fileID: 893452224}
+  - {fileID: 1896630564}
+  - {fileID: 240125323}
+  - {fileID: 49864377}
+  - {fileID: 483072117}
+  - {fileID: 1238743674}
+  - {fileID: 1767142173}
+  - {fileID: 988609834}
+  - {fileID: 1211620350}
+  - {fileID: 756905233}
+  - {fileID: 939042806}
+  - {fileID: 734112809}
+  - {fileID: 555183057}
+  - {fileID: 1283982451}
+  - {fileID: 1383314223}
+  - {fileID: 1133518523}
+  - {fileID: 1070649389}
+  - {fileID: 835266805}
+  - {fileID: 1746126675}
+  - {fileID: 648480842}
+  studioBckgrnd: {fileID: 1563354979}
+  powderUI: {fileID: 103538051}
+  powderPrefab: {fileID: 1690695064}
+  powderStudio: {fileID: 1730563047}
 --- !u!4 &1823126647
 Transform:
   m_ObjectHideFlags: 0

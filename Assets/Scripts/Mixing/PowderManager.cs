@@ -1,6 +1,8 @@
 
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
+using ShootingSystem;
 
 // ------------------------------------------------------------------------------------------------
 
@@ -10,18 +12,31 @@ public class PowderManager : MonoBehaviour
     // =========
     public static PowderManager Instance;
 
-    [Header("Particles system and colours")]
-    public ParticleSystem system;
-    public List<Color> colors;
+    [Header("Paramètres de charges")]
+    public int powderIndex = 0;  // Indice de la poudre utilisée
+    public int maxCharge;         // nombre maximum de charges de la fusée
+    public int charge = 0;        // nombre actuel de charges de la fusée
+    public int powderCap;         // quantité de poudre pour une charge
+    public int powderCount = 0;   // quantité actuelle de poudre
+    
+    [Header("Instantiation des drapeaux")]
+    public Transform meche;
+    public List<GameObject> flags;
 
+    [Header("Poudre PS et couleurs")]
     [SerializeField]
     private float sandVolume = 0.5f;
+    public ParticleSystem system;
+    public List<Color> colors;
     public int flux = 2000;
+    public List<PowderModificator> powderPrefabs;
+    public GameObject powderPrefab;
 
     [Header("Camera")]
     [SerializeField]
     private Camera powderCamera;
     private const float zDistanceFromCamera = 10f;
+    public bool inStudio = false;
 
     // --------------------------------------------------------------------------------------------
     #region Awake/Update
@@ -37,6 +52,7 @@ public class PowderManager : MonoBehaviour
     {
         HandleParticleSound();
         HandleMoving();
+        HandleCharge();
     }
 
     #endregion
@@ -64,8 +80,30 @@ public class PowderManager : MonoBehaviour
         shape.position = localPos;
     }
 
-    // Change la couleur des particules de poudre
-    // ==========================================
+    // Gère le remplissage de la fusée
+    // ===============================
+    void HandleCharge()
+    {
+        if (powderCount >= powderCap)
+        {
+            powderCount = 0;
+            AddCharge(powderIndex);
+        }
+    }
+
+    // --------------------------------------------------------------------------------------------
+    // Change le type de poudre
+    // ========================
+    public void ChangePowder(int index)
+    {
+        SetParticleColor(index);
+        SetParticleAmount(flux);
+        powderCount = 0;
+        powderIndex = index;
+    }
+
+    // Change la couleur de la poudre
+    // ==============================
     public void SetParticleColor(int index)
     {
         // Effet rainbow
@@ -80,12 +118,34 @@ public class PowderManager : MonoBehaviour
         main.startColor = newColor;
     }
 
-    // Change le flux de particules de poudre
-    // ======================================
+    // Change le flux de la poudre
+    // ===========================
     public void SetParticleAmount(int amount)
     {
         var emission = system.emission;
         emission.rateOverTime = amount;
+    }
+
+    // Ajoute une charge
+    // =================
+    public void AddCharge(int Index)
+    {
+        if(charge >= maxCharge)
+            return;
+        BaseShootingSystem.Instance.powderList.Add(powderPrefabs[Index]);
+        flags[charge].SetActive(true);
+        flags[charge].GetComponent<Renderer>().material.color = PowderManager.Instance.colors[Index];
+        charge++;
+    }
+
+    // Reset de la charge
+    // ==================
+    public void ResetCharge(){
+        BaseShootingSystem.Instance.powderList.Clear();
+        charge = 0;
+        powderCount = 0;
+        foreach (GameObject flag in flags)
+            flag.SetActive(false);
     }
 
     #endregion
