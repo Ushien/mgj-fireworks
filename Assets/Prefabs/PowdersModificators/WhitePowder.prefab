@@ -46,4 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FireworkScript: {fileID: 0}
   attachedFirework: {fileID: 0}
-  strength: 0.2
+  strength: 0.4

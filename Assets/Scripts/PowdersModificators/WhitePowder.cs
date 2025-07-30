@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class WhitePowder : PowderModificator
 {
+
+    [SerializeField] private float strength = 0.2f;
+
     // Augmente la gravité sur l'explosion principale
     override public void ApplyModifier()
     {
@@ -12,15 +15,16 @@ public class WhitePowder : PowderModificator
             ParticleSystem burstSystem = subEmitters.GetSubEmitterSystem(1);
             ParticleSystem.MainModule mm = burstSystem.main;
             float gravity= mm.gravityModifier.constant;
-            if (gravity < 1f)
-            {
-                mm.gravityModifier = 1.8f;
-                mm.gravityModifier = new ParticleSystem.MinMaxCurve(1.8f);
-            }
-            else
-            {
-                mm.gravityModifier = new ParticleSystem.MinMaxCurve(gravity + 1f);
-            }
+            mm.gravityModifier = new ParticleSystem.MinMaxCurve(gravity + strength);
+            // if (gravity < 1f)
+            // {
+            //     mm.gravityModifier = 1.8f;
+            //     mm.gravityModifier = new ParticleSystem.MinMaxCurve(1.8f);
+            // }
+            // else
+            // {
+            //     mm.gravityModifier = new ParticleSystem.MinMaxCurve(gravity + strength);
+            // }
         }
     }
 }

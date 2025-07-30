@@ -2790,6 +2790,9 @@ MonoBehaviour:
   isPouring: 0
   mecheLit: {fileID: 653310143}
   rocketAnimator: {fileID: 988609837}
+  closingDelay: 1
+  sparkSound: {fileID: 496511231}
+  fireCracks: {fileID: 6762802434749255877}
   powderCamera: {fileID: 1495088153}
   inStudio: 0
 --- !u!1 &805272183
@@ -2960,7 +2963,7 @@ Transform:
   m_GameObject: {fileID: 833792146}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 296.1}
+  m_LocalPosition: {x: 0, y: 0, z: 450}
   m_LocalScale: {x: 17.73, y: 17.73, z: 17.73}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -5632,9 +5635,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 610257327}
-        m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
-        m_MethodName: LaunchButtonClicked
+      - m_Target: {fileID: 793653100}
+        m_TargetAssemblyTypeName: PowderManager, Assembly-CSharp
+        m_MethodName: CloseRocket
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5644,9 +5647,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1823126646}
-        m_TargetAssemblyTypeName: CameraManager, Assembly-CSharp
-        m_MethodName: SwitchCamera
+      - m_Target: {fileID: 610257327}
+        m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
+        m_MethodName: LaunchButtonClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12578,6 +12581,7 @@ MonoBehaviour:
   - {fileID: 835266805}
   - {fileID: 1746126675}
   - {fileID: 648480842}
+  - {fileID: 653310143}
   studioBckgrnd: {fileID: 1563354979}
 --- !u!4 &1823126647
 Transform:
@@ -13253,7 +13257,7 @@ Transform:
   m_GameObject: {fileID: 2073158749}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 295.1}
+  m_LocalPosition: {x: 0, y: 0, z: 420}
   m_LocalScale: {x: 17.73, y: 17.73, z: 17.73}
   m_ConstrainProportionsScale: 1
   m_Children: []
