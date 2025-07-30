@@ -49,6 +49,10 @@ public class PowderManager : MonoBehaviour
     public bool isPouring = false;
     Bloom bloom;
 
+    [Header("Mèche")]
+    public GameObject mecheLit;
+    public Animator rocketAnimator;
+
     [Header("Camera")]
     [SerializeField]
     private Camera powderCamera;
@@ -172,7 +176,7 @@ public class PowderManager : MonoBehaviour
 
         BaseShootingSystem.Instance.powderList.Add(powderPrefabs[Index]);
         flags[charge].SetActive(true);
-
+        
         // rainbow flag
         // ------------
         if(Index == 7)
@@ -185,6 +189,12 @@ public class PowderManager : MonoBehaviour
             flags[charge].GetComponent<Renderer>().material.color = PowderManager.Instance.colors[Index];
             }
         charge++;
+        
+        if(charge == maxCharge){
+            mecheLit.SetActive(true);
+            rocketAnimator.Play("Closing");
+            }
+
     }
 
     // Reset de la charge
@@ -198,6 +208,7 @@ public class PowderManager : MonoBehaviour
         foreach (GameObject flag in flags)
             flag.SetActive(false);
         ResetBloom();
+        rocketAnimator.Play("Opening");
     }
 
     // Reset du bloom si besoin
