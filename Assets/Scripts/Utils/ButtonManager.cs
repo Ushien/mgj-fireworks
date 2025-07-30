@@ -28,10 +28,4 @@ public class ButtonManager : MonoBehaviour
         shootButton.gameObject.SetActive(true);
         backButton.gameObject.SetActive(true);
     }
-    
-    public void BackButtonClicked()
-    {
-        shootButton.gameObject.SetActive(false);
-        backButton.gameObject.SetActive(false);
-    }
 }

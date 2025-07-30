@@ -3,88 +3,113 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+// ------------------------------------------------------------------------------------------------
+
 public class CameraManager : MonoBehaviour
 {
 
+    // Variables
+    // =========
+    [Header("Cameras settings")]
     [SerializeField] private Camera powderCamera;
     [SerializeField] private Camera shootCamera;
     [SerializeField] private float lerpSpeed = 5f;
+    [SerializeField] private float lerpThreshold = 0.4f;
     [SerializeField] private Button launchButton;
     private float saveCameraOrtho;
     private Vector3 saveCameraPosition;
     private bool goToPowder = false;
     private bool goToShoot = false;
 
-    [Header("fading du studio")]
-    [SerializeField]
-    private float fadeSpeed = 3f;
-    [SerializeField]
-    private float fadeScale = 0.8f;
-    [SerializeField]
-    private List<GameObject> toFade;
-    [SerializeField]
-    private GameObject studioBckgrnd;
+    [Header("Fading du studio")]
+    [SerializeField] private float fadeSpeed = 3f;
+    [SerializeField] private float fadeScale = 0.8f;
     private bool fading = true;
     
-    // Camera transition setting
-    public GameObject powderUI;
-    public GameObject powderPrefab;
-    public GameObject powderStudio;
+    [Header("GameObjects")]
+    [SerializeField] private GameObject powderUI;
+    [SerializeField] private GameObject shootUI;
+    [SerializeField] private GameObject powderPrefab;
+    [SerializeField] private GameObject powderStudio;
+    [SerializeField] private List<GameObject> toFade;
+    [SerializeField] private GameObject studioBckgrnd;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    // --------------------------------------------------------------------------------------------
+    #region Start/Update
+
+
+    // Start
+    // =====
     void Start()
     {
         powderCamera.enabled = false;
+        powderStudio.transform.localScale = new Vector3(fadeScale, fadeScale, fadeScale);
     }
 
-    // Update is called once per frame
+    // Update
+    // ======
     void Update()
     {
         HandleFading();
+        HandleCameraMovement();
+    }
+
+
+    #endregion
+    // ----------------------------------------------------------------------------------
+    #region Methods
+
+
+    // Handles camera movement
+    // =======================
+    private void HandleCameraMovement()
+    {
         if (goToPowder)
-        {
-            // lerp position
-            shootCamera.transform.position = Vector3.Lerp(
-                shootCamera.transform.position,
-                powderCamera.transform.position,
-                Time.deltaTime * lerpSpeed
-            );
-
-            // lerp fov
-            shootCamera.orthographicSize = Mathf.Lerp(
-                shootCamera.orthographicSize,
-                powderCamera.orthographicSize,
-                Time.deltaTime * lerpSpeed
-            );
-
-            if (Vector3.Distance(shootCamera.transform.position, powderCamera.transform.position) < 0.8f)
-            {
-                GoToPowderCamera();
-            }
-        }
+            LerpCamera(shootCamera, powderCamera);
         else if (goToShoot)
+            LerpCamera(powderCamera, shootCamera);
+    }
+
+
+    // Handles the Lerp
+    // ================
+    private void LerpCamera(Camera fromCam, Camera toCam)
+    {
+        // position
+        fromCam.transform.position = Vector3.Lerp(
+            fromCam.transform.position,
+            toCam.transform.position,
+            Time.deltaTime * lerpSpeed
+        );
+
+        // FOV
+        fromCam.orthographicSize = Mathf.Lerp(
+            fromCam.orthographicSize,
+            toCam.orthographicSize,
+            Time.deltaTime * lerpSpeed
+        );
+
+        // critère d'arrêt
+        if (Vector3.Distance(fromCam.transform.position, toCam.transform.position) < lerpThreshold)
         {
-            // lerp position
-            powderCamera.transform.position = Vector3.Lerp(
-                powderCamera.transform.position,
-                shootCamera.transform.position,
-                Time.deltaTime * lerpSpeed
-            );
-
-            // lerp fov
-            powderCamera.orthographicSize = Mathf.Lerp(
-                powderCamera.orthographicSize,
-                shootCamera.orthographicSize,
-                Time.deltaTime * lerpSpeed
-            );
-
-            if (Vector3.Distance(powderCamera.transform.position, shootCamera.transform.position) < 0.8f)
-            {
-                GoToShootCamera();
+            fromCam.enabled = false;
+            toCam.enabled = true;
+            goToShoot = false;
+            goToPowder = false;
+            fromCam.orthographicSize = saveCameraOrtho;
+            fromCam.transform.position = saveCameraPosition;
+            if(toCam == powderCamera){
+                launchButton.gameObject.SetActive(true);
+                PowderManager.Instance.inStudio = true;
             }
+            else
+                shootUI.SetActive(true);
         }
     }
 
+    // Switch de caméra
+    // ================
     public void SwitchCamera()
     {
         if (powderCamera.enabled)
@@ -102,82 +127,49 @@ public class CameraManager : MonoBehaviour
             saveCameraOrtho = shootCamera.orthographicSize;
             saveCameraPosition = shootCamera.transform.position;
             fading = false;
-            StartCoroutine(inStudioDelay(1.5f));
+            shootUI.SetActive(false);
             TogglePowderUI(true);
         }
     }
+    
+    // --------------------------------------------------------------------------------------------
 
-    private void GoToShootCamera()
+    // Gère le fading
+    // ==============
+    private void HandleFading()
     {
-        powderCamera.enabled = false;
-        shootCamera.enabled = true;
-        goToShoot = false;
-        goToPowder = false;
-        powderCamera.orthographicSize = saveCameraOrtho;
-        powderCamera.transform.position = saveCameraPosition;
+        float targetFade = fading ? 0f : 1f;
+        Vector3 targetScale = fading ? Vector3.one * fadeScale : Vector3.one;
+
+        FadeObjects(toFade, targetFade);
+        FadeBackground(studioBckgrnd, targetFade);
+        powderStudio.transform.localScale = Vector3.Lerp(
+            powderStudio.transform.localScale,
+            targetScale,
+            Time.deltaTime * fadeSpeed
+        );
     }
 
-    private void GoToPowderCamera()
+    // Fading des objets
+    // =================
+    private void FadeObjects(List<GameObject> objects, float targetFade)
     {
-        powderCamera.enabled = true;
-        shootCamera.enabled = false;
-        goToShoot = false;
-        goToPowder = false;
-        shootCamera.orthographicSize = saveCameraOrtho;
-        shootCamera.transform.position = saveCameraPosition;
-        launchButton.gameObject.SetActive(true);
+        foreach (GameObject obj in objects)
+        {
+            SpriteRenderer sr = obj.GetComponent<SpriteRenderer>();
+            float faded = Mathf.Lerp(sr.color.r, targetFade, Time.deltaTime * fadeSpeed);
+            sr.color = new Color(faded, faded, faded, 1f);
+        }
     }
 
-    private void HandleFading(){
-        if (fading) {
-            foreach (GameObject objectToFade in toFade)
-            {
-                SpriteRenderer sr = objectToFade.GetComponent<SpriteRenderer>();
-                if (sr != null)
-                {
-                    Color c = sr.color;
-                    float faded = Mathf.Lerp(c.r, 0f, Time.deltaTime * fadeSpeed);
-                    sr.color = new Color(faded, faded, faded, 1f);
-                }
-            }
-
-            // Scale and background fade (keep this if background is still a 3D object)
-            powderStudio.transform.localScale = Vector3.Lerp(powderStudio.transform.localScale,
-                                                            new Vector3(fadeScale, fadeScale, fadeScale),
-                                                            Time.deltaTime * fadeSpeed);
-            
-            SpriteRenderer bgRenderer = studioBckgrnd.GetComponent<SpriteRenderer>();
-            if (bgRenderer != null) {
-                Color bgColor = bgRenderer.color;
-                float newAlpha = Mathf.Lerp(bgColor.a, 0f, Time.deltaTime * fadeSpeed);
-                bgRenderer.color = new Color(bgColor.r, bgColor.g, bgColor.b, newAlpha);
-            }
-        }
-
-        if (!fading){
-            foreach (GameObject objectToFade in toFade)
-            {
-                SpriteRenderer sr = objectToFade.GetComponent<SpriteRenderer>();
-                if (sr != null)
-                {
-                    Color c = sr.color;
-                    float faded = Mathf.Lerp(c.r, 1f, Time.deltaTime * fadeSpeed);
-                    sr.color = new Color(faded, faded, faded, 1f);
-                }
-            }
-
-            // Scale and background fade (keep this if background is still a 3D object)
-            powderStudio.transform.localScale = Vector3.Lerp(powderStudio.transform.localScale,
-                                                            new Vector3(1f, 1f, 1f),
-                                                            Time.deltaTime * fadeSpeed);
-            
-            SpriteRenderer bgRenderer = studioBckgrnd.GetComponent<SpriteRenderer>();
-            if (bgRenderer != null) {
-                Color bgColor = bgRenderer.color;
-                float newAlpha = Mathf.Lerp(bgColor.a, 1f, Time.deltaTime * fadeSpeed);
-                bgRenderer.color = new Color(bgColor.r, bgColor.g, bgColor.b, newAlpha);
-            }
-        }
+    // Fading du background
+    // ====================
+    private void FadeBackground(GameObject bgObject, float targetAlpha)
+    {
+        SpriteRenderer bgRenderer = bgObject.GetComponent<SpriteRenderer>();
+        Color c = bgRenderer.color;
+        float newAlpha = Mathf.Lerp(c.a, targetAlpha, Time.deltaTime * fadeSpeed);
+        bgRenderer.color = new Color(c.r, c.g, c.b, newAlpha);
     }
 
     // Toggle powder UI
@@ -188,11 +180,6 @@ public class CameraManager : MonoBehaviour
         powderPrefab.SetActive(activate);
     }
 
-    // Activation du studio après un délai de fade
-    // ===========================================
-    private IEnumerator inStudioDelay(float seconds)
-    {
-        yield return new WaitForSeconds(seconds);
-        PowderManager.Instance.inStudio = true;
-    }
+    #endregion
+    // --------------------------------------------------------------------------------------------
 }

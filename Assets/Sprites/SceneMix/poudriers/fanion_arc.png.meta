@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 1106db1a06cbb32489e6fa03a3d95899
+guid: b164e9c1adeb31c4997e3102a683ef7e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8342336023556853299
-    second: fanion 1_0
+      213: 4295633819200078717
+    second: fanion_arc_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: fanion 1_0
+      name: fanion_arc_0
       rect:
         serializedVersion: 2
         x: 42
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 33e0d01f96ee5c370800000000000000
-      internalID: 8342336023556853299
+      spriteID: d73439603382d9b30800000000000000
+      internalID: 4295633819200078717
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      fanion 1_0: 8342336023556853299
+      fanion_arc_0: 4295633819200078717
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
