@@ -15,11 +15,13 @@ public class PowderManager : MonoBehaviour
     public static PowderManager Instance;
 
     [Header("Paramètres de charges")]
-    public int powderIndex = 0;  // Indice de la poudre utilisée
-    public int maxCharge;         // nombre maximum de charges de la fusée
-    public int charge = 0;        // nombre actuel de charges de la fusée
-    public int powderCap;         // quantité de poudre pour une charge
-    public int powderCount = 0;   // quantité actuelle de poudre
+    public int powderIndex = 0;             // Indice de la poudre utilisée
+    public int maxCharge;                   // nombre maximum de charges de la fusée
+    public int charge = 0;                  // nombre actuel de charges de la fusée
+    public float powderCap;                   // Temps nécessaire de détection pour une charge
+    public float powderTimer = 0f;          // durée cumulée de détection de poudre
+    public int powderCount = 0;             // poudre cumulée détectée cette frame
+    public int previousPowderCount = 0;    // poudre cumulée à la frame précédente
 
     [Header("Pink Powder exception")]
     public float bloomIntensity;
@@ -29,6 +31,7 @@ public class PowderManager : MonoBehaviour
     public Transform meche;
     public List<GameObject> flags;
     public Sprite flagMulti;
+    public Sprite flagNormal;
 
     [Header("Poudre PS et couleurs")]
     [SerializeField]
@@ -98,11 +101,22 @@ public class PowderManager : MonoBehaviour
     // ===============================
     void HandleCharge()
     {
-        if (powderCount >= powderCap)
-        {
-            powderCount = 0;
-            AddCharge(powderIndex);
+        if(powderCount > previousPowderCount){
+            previousPowderCount = powderCount;
+            powderTimer += Time.deltaTime;
+            if (powderTimer >= powderCap)
+            {
+                powderTimer = 0f;
+                powderCount = 0;
+                previousPowderCount = 0;
+                AddCharge(powderIndex);
+            }
         }
+        // if (powderCount >= powderCap)
+        // {
+        //     powderCount = 0;
+        //     AddCharge(powderIndex);
+        // }
     }
 
     // --------------------------------------------------------------------------------------------
@@ -113,6 +127,8 @@ public class PowderManager : MonoBehaviour
         SetParticleColor(index);
         SetParticleAmount(flux);
         powderCount = 0;
+        previousPowderCount = 0;
+        powderTimer = 0f;
         powderIndex = index;
     }
 
@@ -160,9 +176,14 @@ public class PowderManager : MonoBehaviour
         // rainbow flag
         // ------------
         if(Index == 7)
+        {
             flags[charge].GetComponent<SpriteRenderer>().sprite = flagMulti;
-        else
+            flags[charge].GetComponent<Renderer>().material.color = PowderManager.Instance.colors[9];
+        }
+        else{
+            flags[charge].GetComponent<SpriteRenderer>().sprite = flagNormal;
             flags[charge].GetComponent<Renderer>().material.color = PowderManager.Instance.colors[Index];
+            }
         charge++;
     }
 
@@ -172,6 +193,8 @@ public class PowderManager : MonoBehaviour
         BaseShootingSystem.Instance.powderList.Clear();
         charge = 0;
         powderCount = 0;
+        previousPowderCount = 0;
+        powderTimer = 0f;
         foreach (GameObject flag in flags)
             flag.SetActive(false);
         ResetBloom();

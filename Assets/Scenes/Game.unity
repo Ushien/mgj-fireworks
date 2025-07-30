@@ -1864,6 +1864,7 @@ MonoBehaviour:
   index: 4
   rotSpeed: 13
   returnSpeed: 10
+  tolerance: 0.1
 --- !u!212 &555183061
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2178,6 +2179,7 @@ MonoBehaviour:
   index: 11
   rotSpeed: 13
   returnSpeed: 10
+  tolerance: 0.1
 --- !u!212 &648480846
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2321,6 +2323,7 @@ MonoBehaviour:
   index: 3
   rotSpeed: 13
   returnSpeed: 10
+  tolerance: 0.1
 --- !u!212 &734112813
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2481,6 +2484,7 @@ MonoBehaviour:
   index: 1
   rotSpeed: 13
   returnSpeed: 10
+  tolerance: 0.1
 --- !u!65 &756905237
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2549,8 +2553,10 @@ MonoBehaviour:
   powderIndex: 0
   maxCharge: 6
   charge: 0
-  powderCap: 200
+  powderCap: 2
+  powderTimer: 0
   powderCount: 0
+  previousPowderCount: 0
   bloomIntensity: 5
   scatter: 0.1
   meche: {fileID: 1049895311}
@@ -2562,6 +2568,7 @@ MonoBehaviour:
   - {fileID: 49864377}
   - {fileID: 483072117}
   flagMulti: {fileID: 21300000, guid: b164e9c1adeb31c4997e3102a683ef7e, type: 3}
+  flagNormal: {fileID: 21300000, guid: 1106db1a06cbb32489e6fa03a3d95899, type: 3}
   sandVolume: 0.5
   system: {fileID: 1690695066}
   colors:
@@ -2843,6 +2850,7 @@ MonoBehaviour:
   index: 9
   rotSpeed: 13
   returnSpeed: 10
+  tolerance: 0.1
 --- !u!212 &835266809
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3398,6 +3406,7 @@ MonoBehaviour:
   index: 2
   rotSpeed: 13
   returnSpeed: 10
+  tolerance: 0.1
 --- !u!212 &939042810
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4010,6 +4019,7 @@ MonoBehaviour:
   index: 8
   rotSpeed: 13
   returnSpeed: 10
+  tolerance: 0.1
 --- !u!65 &1070649393
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4214,6 +4224,7 @@ MonoBehaviour:
   index: 7
   rotSpeed: 13
   returnSpeed: 10
+  tolerance: 0.1
 --- !u!65 &1133518527
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4634,6 +4645,7 @@ MonoBehaviour:
   index: 0
   rotSpeed: 13
   returnSpeed: 10
+  tolerance: 0.2
 --- !u!212 &1211620354
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4935,6 +4947,7 @@ MonoBehaviour:
   index: 5
   rotSpeed: 13
   returnSpeed: 10
+  tolerance: 0.1
 --- !u!212 &1283982455
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5148,6 +5161,7 @@ MonoBehaviour:
   index: 6
   rotSpeed: 13
   returnSpeed: 10
+  tolerance: 0.1
 --- !u!212 &1383314227
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11475,6 +11489,7 @@ MonoBehaviour:
   index: 10
   rotSpeed: 13
   returnSpeed: 10
+  tolerance: 0.1
 --- !u!212 &1746126679
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12295,7 +12310,7 @@ MonoBehaviour:
   powderCamera: {fileID: 1495088153}
   shootCamera: {fileID: 1997103074}
   lerpSpeed: 5
-  lerpThreshold: 0.4
+  lerpThreshold: 0.1
   launchButton: {fileID: 1386056169}
   fadeSpeed: 3
   fadeScale: 0.4

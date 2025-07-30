@@ -122,6 +122,8 @@ public class Bucket : MonoBehaviour
         transform.position = new Vector3 (transform.position.x, transform.position.y, basePosition.z); // Amène derrière la poudre
         PowderManager.Instance.SetParticleAmount(0);
         PowderManager.Instance.powderCount = 0;
+        PowderManager.Instance.previousPowderCount = 0;
+        PowderManager.Instance.powderTimer = 0f;
         PowderManager.Instance.isPouring = false;
     }
 
