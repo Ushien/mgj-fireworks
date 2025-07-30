@@ -10,6 +10,8 @@ public class CameraManager : MonoBehaviour
     
     // Variables
     // =========
+    public static CameraManager Instance;
+
     [Header("Cameras settings")]
     [SerializeField] private Camera powderCamera;
     [SerializeField] private Camera shootCamera;
@@ -38,6 +40,12 @@ public class CameraManager : MonoBehaviour
     // --------------------------------------------------------------------------------------------
     #region Start/Update
 
+    // Awake
+    // =====
+    void Awake()
+    {
+        Instance = this;
+    }
 
     // Start
     // =====

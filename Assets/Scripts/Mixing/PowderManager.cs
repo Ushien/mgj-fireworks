@@ -52,6 +52,9 @@ public class PowderManager : MonoBehaviour
     [Header("Mèche")]
     public GameObject mecheLit;
     public Animator rocketAnimator;
+    [SerializeField] private float closingDelay = 1f;
+    public AudioSource sparkSound;
+    public GameObject fireCracks;
 
     [Header("Camera")]
     [SerializeField]
@@ -220,6 +223,61 @@ public class PowderManager : MonoBehaviour
             bloom.scatter.value = BloomScatter;
         }
     }
+
+    // Ferme la fusée et allume la mèche
+    // ---------------------------------
+    public void CloseRocket(){
+        if (!mecheLit.activeSelf){
+            rocketAnimator.Play("Closing");
+            mecheLit.SetActive(true);
+            StartCoroutine(GoToShootScreen(closingDelay));
+        }
+        else
+        {
+            StartCoroutine(FadeSpark(sparkSound, closingDelay));
+            CameraManager.Instance.SwitchCamera();
+        }
+
+    }
+
+    // Joue le son plusieurs fois
+    // ---------------------------
+    private IEnumerator GoToShootScreen(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        CameraManager.Instance.SwitchCamera();
+        StartCoroutine(FadeSpark(sparkSound, closingDelay));
+    }
+
+    // Fade l'étincelle de la mèche
+    // ----------------------------
+    private void FadeSpark(){
+        mecheLit.SetActive(false);
+    }
+
+    // Sert à fade les étincelles de la mèche
+    // --------------------------------------
+    private IEnumerator FadeSpark (AudioSource audioSource, float duration)
+    {
+        Vector3 startSize = fireCracks.transform.localScale;
+        Vector3 startMecheSize = mecheLit.transform.localScale;
+        float startVolume = audioSource.volume;
+        float time = 0f;
+        while (time < duration)
+        {
+            audioSource.volume = Mathf.Lerp(startVolume, 0f, time / duration);
+            fireCracks.transform.localScale = Vector3.Lerp(startSize, new Vector3(0f, 0f, 0f), time / duration);
+            mecheLit.transform.localScale = Vector3.Lerp(startMecheSize, new Vector3(0f, 0f, 0f), time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        audioSource.volume = 0f;
+        mecheLit.SetActive(false);
+        fireCracks.transform.localScale = startSize;
+        mecheLit.transform.localScale = startMecheSize;
+        audioSource.volume = startVolume;
+    }
+
     #endregion
     // --------------------------------------------------------------------------------------------
 }
