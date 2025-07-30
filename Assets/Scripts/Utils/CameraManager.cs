@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 public class CameraManager : MonoBehaviour
 {
-
+    
     // Variables
     // =========
     [Header("Cameras settings")]

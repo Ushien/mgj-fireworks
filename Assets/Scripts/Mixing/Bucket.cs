@@ -23,13 +23,16 @@ public class Bucket : MonoBehaviour
     [SerializeField]
     private int index;
     [SerializeField]
-    public float rotSpeed = 1f;
+    private float rotSpeed = 1f;
     [SerializeField]
-    public float returnSpeed = 5f;
+    private float returnSpeed = 5f;
+    [SerializeField]
+    private float tolerance = 0.1f;
 
     private Vector3 basePosition;
     private const float frontOffset = -40f;
     private bool isGrabbed = false;
+    private bool firstGrab = true;
 
     // --------------------------------------------------------------------------------------------
     #region Start/Update
@@ -44,7 +47,12 @@ public class Bucket : MonoBehaviour
     void Update()
     {
         if(!PowderManager.Instance.inStudio)
+        {
+            if(!firstGrab)
+                firstGrab = true;
             return;
+        }
+        
         HandleMoving();
         HandleInput();
     }
@@ -67,7 +75,7 @@ public class Bucket : MonoBehaviour
 
         // Retour si inutilisé
         // -------------------
-        if(!isGrabbed)
+        if(!isGrabbed && Vector3.Distance(transform.position, basePosition) >= tolerance && !firstGrab)
         {
             transform.position = Vector3.Lerp(transform.position, basePosition, Time.deltaTime * returnSpeed);
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0,0,0), Time.deltaTime * rotSpeed);
@@ -102,6 +110,7 @@ public class Bucket : MonoBehaviour
         transform.position = new Vector3(transform.position.x, transform.position.y, basePosition.z + frontOffset); // Amène devant la poudre
         PowderManager.Instance.ChangePowder(index);
         PowderManager.Instance.isPouring = true;
+        firstGrab = false;
     }
 
     // Déselection du bucket
