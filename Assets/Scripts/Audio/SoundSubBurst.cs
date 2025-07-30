@@ -5,7 +5,7 @@ using UnityEngine;
 public class SoundSubBurst : MonoBehaviour
 {
 
-    private ParticleSystem particleSystem;
+    private ParticleSystem partSys;
     FireworkAudioManager fireworkAudioManager;
     private int previousParticleCount;
     bool isPlayed = false;
@@ -17,13 +17,13 @@ public class SoundSubBurst : MonoBehaviour
     private int limit = 27;
     void Start()
     {
-        particleSystem = transform.parent.Find("Burst/Trails").GetComponent<ParticleSystem>();
-        previousParticleCount = particleSystem.particleCount;
+        partSys = transform.parent.Find("Burst/Trails").GetComponent<ParticleSystem>();
+        previousParticleCount = partSys.particleCount;
         fireworkAudioManager = FireworkAudioManager.Instance;
     }
     void Update()
     {
-        int currentCount = particleSystem.particleCount;
+        int currentCount = partSys.particleCount;
         
         //attend que le trails ait bien démmaré
         if (!hasStarted && currentCount > limit)
@@ -32,14 +32,14 @@ public class SoundSubBurst : MonoBehaviour
         }
         
         //lance le son lorsque le nombre de particule diminue
-        if (particleSystem.particleCount < previousParticleCount+10 && !isPlayed && hasStarted)
+        if (partSys.particleCount < previousParticleCount+10 && !isPlayed && hasStarted)
         {
 
             StartCoroutine(PlayClipRepeatedly());
            
             isPlayed = true;
         }
-        previousParticleCount = particleSystem.particleCount;
+        previousParticleCount = partSys.particleCount;
     }
     
     // Joue le son plusieurs fois

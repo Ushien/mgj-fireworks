@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class SoundBurstFirework : MonoBehaviour
 {
-    private ParticleSystem particleSystem;
+    private ParticleSystem partSys;
     private ParticleSystem.Particle[] mParticles;
     FireworkAudioManager fireworkAudioManager;
     
     void Start()
     {
-        particleSystem = GetComponent<ParticleSystem>();
+        partSys = GetComponent<ParticleSystem>();
         fireworkAudioManager = FireworkAudioManager.Instance;
     }
     void Update()
     {
-        mParticles = new ParticleSystem.Particle[particleSystem.main.maxParticles];
+        mParticles = new ParticleSystem.Particle[partSys.main.maxParticles];
         
         // Verifie pour chaque particule si sa fin de vie est atteinte
-        for(int i = 0; i < particleSystem.GetParticles(mParticles); i++)
+        for(int i = 0; i < partSys.GetParticles(mParticles); i++)
         {
             if (mParticles[i].remainingLifetime < 0.01f)
             {
