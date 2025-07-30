@@ -10,6 +10,7 @@ namespace ShootingSystem {
         [SerializeField] private AudioSource audioSource; /// Audio source to play the shot sound.
         [SerializeField] public List<PowderModificator> powderList; /// List of powders you plan to attach to a firework.
         [SerializeField] private List<AudioClip> shotSounds;
+        [SerializeField] private float xOffset = 0.3f;
 
         public static BaseShootingSystem Instance;
 
@@ -48,7 +49,7 @@ namespace ShootingSystem {
         protected void ShotEffects(Vector2 startPosition)
         {
             GameObject projectile = projectilePool.GetObject();
-            projectile.transform.position = projectileSpawnPoint.position;
+            projectile.transform.position = new Vector3 (projectileSpawnPoint.position.x + xOffset, projectileSpawnPoint.position.y, 280f);
 
             FireworkProjectile projectileBehaviour = projectile.GetComponent<FireworkProjectile>();
             if (projectileBehaviour != null)
