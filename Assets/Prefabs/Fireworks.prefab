@@ -9835,9 +9835,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attachedFirework: {fileID: 420124946508670312}
   powderList: []
+  colorList: []
   finalColor: {x: 1, y: 1, z: 1}
   fireworkMaterial: {fileID: 2100000, guid: 30a21a739a904074b8dc5da8cf4933e6, type: 2}
-  emissive: 2
+  emissive: 30
 --- !u!114 &1688633067605032858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9926,6 +9927,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Burst
       objectReference: {fileID: 0}
+    - target: {fileID: 5169676333667507381, guid: 76373b868592a52428c39d2c01b13b67, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6003737343460530987, guid: 76373b868592a52428c39d2c01b13b67, type: 3}
       propertyPath: autoRandomSeed
       value: 0
@@ -10005,6 +10010,10 @@ PrefabInstance:
     - target: {fileID: 6003737343460530987, guid: 76373b868592a52428c39d2c01b13b67, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
       value: 5000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6101699323983319111, guid: 76373b868592a52428c39d2c01b13b67, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}

@@ -6,8 +6,6 @@ public class GreenPowder : PowderModificator
     // Rend l'explosion un peu plus verte
     override public void ApplyModifier()
     {
-        FireworkScript.finalColor = new Vector3 (FireworkScript.finalColor.x,
-                                     FireworkScript.finalColor.y + colorStrength,
-                                     FireworkScript.finalColor.z);
+        FireworkScript.colorList.Add(0.3f);
     }
 }
