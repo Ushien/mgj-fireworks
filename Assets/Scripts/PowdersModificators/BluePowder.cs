@@ -6,6 +6,8 @@ public class BluePowder : PowderModificator
     // Rend l'explosion un peu plus bleue
     override public void ApplyModifier()
     {
-        FireworkScript.colorList.Add(0.6f);
+        FireworkScript.finalColor = new Vector3 (FireworkScript.finalColor.x,
+                                     FireworkScript.finalColor.y,
+                                     FireworkScript.finalColor.z + colorStrength);
     }
 }

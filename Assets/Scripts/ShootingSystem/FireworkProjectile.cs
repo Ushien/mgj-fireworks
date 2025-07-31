@@ -13,8 +13,7 @@ namespace ShootingSystem {
         private Vector2 startPosition; /// The starting position of the projectile.
         [SerializeField]
         private List<PowderModificator> powderList;
-        public List<float> colorList;
-        public Vector3 finalColor = new Vector3 (0f, 0f, 0f);
+        public Vector3 finalColor = new Vector3 (1f, 1f, 1f);
         public Material fireworkMaterial;
         public float emissive = 5f;
 
@@ -55,10 +54,7 @@ namespace ShootingSystem {
                 powder.ApplyModifier();
             }
 
-            if(colorList.Count > 0)
-            {
-                ChangeFinalColor();
-            }
+            ChangeFinalColor();
 
             foreach (PowderModificator purplePowder in purplePowders)
             {
@@ -76,60 +72,33 @@ namespace ShootingSystem {
             }
         }
 
-        public void ChangeFinalColor()
-        {
-            float colorFloat = colorList[Random.Range(0, colorList.Count)]; // pick une couleur au pif 
-            float tol = 0.1f;
-            if(colorFloat == 0f)
-                tol = 0.04f;
-            Color randomColor = RandomSaturatedColor(colorFloat - tol, colorFloat + tol);
+        public void ChangeFinalColor(){
+            Debug.Log(finalColor);
+            // // Change la couleur du projectile principal
+            ParticleSystem.MainModule mm = attachedFirework.GetComponent<ParticleSystem>().main;
+            finalColor = finalColor.normalized*3f;
+            mm.startColor = new ParticleSystem.MinMaxGradient(new Color(finalColor.x, finalColor.y, finalColor.z));
 
-            // Apply color to main firework system
+            // Change la couleur du trail
             var subEmitters = attachedFirework.subEmitters;
+            ParticleSystem.MainModule mm1 = subEmitters.GetSubEmitterSystem(0).main;
+            mm1.startColor = mm.startColor;
 
-            // Trail system
-            ParticleSystem trailPS = subEmitters.GetSubEmitterSystem(0);
-            ApplyColorToSystem(trailPS, randomColor);
-
-            // Only for the main explosion firework
+            // Si on manipule l'explosion principale
             if (attachedFirework.name == "Fireworks(Clone)")
             {
-                ParticleSystem burstPS = subEmitters.GetSubEmitterSystem(1);
-                burstPS.GetComponent<ParticleSystemRenderer>().material = trailPS.GetComponent<ParticleSystemRenderer>().material;
+                // Change la couleur des projectiles de l'explosion
+                ParticleSystem burstSystem = subEmitters.GetSubEmitterSystem(1);
+                ParticleSystem.MainModule mm2 = burstSystem.main;
+                mm2.startColor = mm.startColor;
 
-                ParticleSystem burstTrailPS = burstPS.subEmitters.GetSubEmitterSystem(0);
-                burstTrailPS.GetComponent<ParticleSystemRenderer>().material = trailPS.GetComponent<ParticleSystemRenderer>().material;
+                // Change la couleur du trail de l'explosion
+                ParticleSystem trailSystem = burstSystem.subEmitters.GetSubEmitterSystem(0);
+                ParticleSystem.MainModule mm3 = trailSystem.main;
+                mm3.startColor = mm.startColor;
             }
-        }
-
-        private void ApplyColorToSystem(ParticleSystem ps, Color color)
-        {
-            if (ps == null) return;
-
-            // Change start color
-            var main = ps.main;
-            main.startColor = color;
-
-            // Assign instanced material
-            ParticleSystemRenderer renderer = ps.GetComponent<ParticleSystemRenderer>();
-            if (renderer != null && fireworkMaterial != null)
-            {
-                Material matInstance = new Material(fireworkMaterial);
-                matInstance.color = color;
-                matInstance.SetColor("_EmissionColor", color * emissive); // Make sure emission is enabled on the shader
-                renderer.material = matInstance;
-            }
-        }
-
-
-        // Pick a random saturated color;
-        Color RandomSaturatedColor(float min, float max)
-        {
-            float hue = Mathf.Repeat(Random.Range(min, max), 1f);       // 0 rouge, 0.3 V, 0.6 B
-            float saturation = 1f;                   // Fully saturated
-            float value = Random.Range(0.8f, 1f);    // à check
-
-            return Color.HSVToRGB(hue, saturation, value);
+            fireworkMaterial.color = new Color(finalColor.x, finalColor.y, finalColor.z);
+            fireworkMaterial.SetColor("_EmissionColor", new Color(finalColor.x, finalColor.y, finalColor.z)*emissive);
         }
     }
 }

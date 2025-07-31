@@ -14,7 +14,7 @@ public class BrownPowder : PowderModificator
 
             // Modify main module
             var main = trailSystem.main;
-            main.startLifetime = new ParticleSystem.MinMaxCurve(0.1f, 4f);
+            main.startLifetime = new ParticleSystem.MinMaxCurve(0.1f, 10f);
             main.maxParticles = 10000;
 
             // Modify emission module
