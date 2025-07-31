@@ -5956,7 +5956,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
       cycleCount: 1
-      repeatInterval: 0.01
+      repeatInterval: 0.05
       probability: 1
   SizeModule:
     enabled: 0
@@ -9835,9 +9835,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attachedFirework: {fileID: 420124946508670312}
   powderList: []
+  colorList: []
   finalColor: {x: 1, y: 1, z: 1}
   fireworkMaterial: {fileID: 2100000, guid: 30a21a739a904074b8dc5da8cf4933e6, type: 2}
-  emissive: 2
+  emissive: 10
 --- !u!114 &1688633067605032858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9976,7 +9977,7 @@ PrefabInstance:
       objectReference: {fileID: 7397504354131334020}
     - target: {fileID: 6003737343460530987, guid: 76373b868592a52428c39d2c01b13b67, type: 3}
       propertyPath: InitialModule.maxNumParticles
-      value: 12000
+      value: 20000
       objectReference: {fileID: 0}
     - target: {fileID: 6003737343460530987, guid: 76373b868592a52428c39d2c01b13b67, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
@@ -10004,7 +10005,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6003737343460530987, guid: 76373b868592a52428c39d2c01b13b67, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
-      value: 5000
+      value: 2000
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
