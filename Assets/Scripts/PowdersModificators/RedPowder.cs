@@ -6,6 +6,6 @@ public class RedPowder : PowderModificator
     // Rend l'explosion un peu plus rouge
     override public void ApplyModifier()
     {
-        FireworkScript.colorList.Add(0f);
+        FireworkScript.colorList.Add(1f);
     }
 }

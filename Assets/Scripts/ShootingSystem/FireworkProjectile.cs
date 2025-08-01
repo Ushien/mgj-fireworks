@@ -18,7 +18,9 @@ namespace ShootingSystem {
         public Vector3 finalColor = new Vector3 (0f, 0f, 0f);
         public Material fireworkMaterial;
         public Material rainbowMaterial;
+        public float rainbowTol = 0.3f;
         public float emissive = 5f;
+        public float speed = 3f;
 
 
 
@@ -96,7 +98,10 @@ namespace ShootingSystem {
             float colorFloat = colorList[Random.Range(0, colorList.Count)]; // pick une couleur au pif 
             float tol = 0.1f;
             if(colorFloat == 0f)
+            {
+                rainbowTol = 0.1f;
                 tol = 0.04f;
+            }
 
             // Apply color to main firework system
             var subEmitters = attachedFirework.subEmitters;
@@ -148,8 +153,9 @@ namespace ShootingSystem {
         {
             ParticleSystemRenderer renderer = ps.GetComponent<ParticleSystemRenderer>();
             Material matInstance = new Material(rainbowMaterial);
-            matInstance.SetFloat("Hue", hueFloat);
-            matInstance.SetFloat("tol", tolerance + 0.1f * (rainbowAmount-1));
+            matInstance.SetFloat("_Hue", hueFloat);
+            matInstance.SetFloat("_tol", rainbowTol);
+            matInstance.SetFloat("_Speed", speed*rainbowAmount);
             renderer.material = matInstance;
         }
 

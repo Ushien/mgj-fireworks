@@ -9840,6 +9840,7 @@ MonoBehaviour:
   finalColor: {x: 1, y: 1, z: 1}
   fireworkMaterial: {fileID: 2100000, guid: 30a21a739a904074b8dc5da8cf4933e6, type: 2}
   rainbowMaterial: {fileID: 2100000, guid: 34603da5667aafd4bb784419fa092951, type: 2}
+  rainbowTol: 0.3
   emissive: 10
 --- !u!114 &1688633067605032858
 MonoBehaviour:
