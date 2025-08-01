@@ -2735,14 +2735,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98d567ede77171c43becc4723961d806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powderIndex: 0
+  powderIndex: 8
   maxCharge: 6
-  charge: 0
+  charge: 1
   powderCap: 1
   powderTimer: 0
   powderCount: 0
   previousPowderCount: 0
-  bloomIntensity: 5
+  bloomIntensity: 6
   scatter: 0.1
   meche: {fileID: 1049895311}
   flags:
@@ -2785,7 +2785,7 @@ MonoBehaviour:
   - {fileID: -4382250018187464012, guid: e7d628e0d014900438f2feef5f0fb80e, type: 3}
   powderPrefab: {fileID: 1690695064}
   volume: {fileID: 133518687}
-  BloomIntensity: 8
+  BloomIntensity: 4
   BloomScatter: 0.1
   isPouring: 0
   mecheLit: {fileID: 653310143}
@@ -3828,8 +3828,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.6385325, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.7859495, y: 1, z: 1}
+  m_Center: {x: -0.0957367, y: 0, z: 0}
 --- !u!23 &1041968127
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13091,7 +13091,7 @@ MonoBehaviour:
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras: []
-  m_RendererIndex: -1
+  m_RendererIndex: 0
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 1

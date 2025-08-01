@@ -33,6 +33,7 @@ namespace ShootingSystem {
 
             //Place les purplePowders dans une liste à part, afin de gérer l'héritage des caractéristiques
             List<PowderModificator> purplePowders = new List<PowderModificator>();
+            List<PowderModificator> brownPowders = new List<PowderModificator>();
             List<PowderModificator> otherPowders = new List<PowderModificator>();
 
             foreach (PowderModificator powder in powderList)
@@ -40,6 +41,11 @@ namespace ShootingSystem {
                 if (powder is PurplePowder)
                 {
                     purplePowders.Add(powder);
+                }
+
+                if (powder is BrownPowder)
+                {
+                    brownPowders.Add(powder);
                 }
 
                 else
@@ -65,6 +71,13 @@ namespace ShootingSystem {
                 purplePowder.FireworkScript = this;
                 purplePowder.attachedFirework = GetComponent<ParticleSystem>();
                 purplePowder.ApplyModifier(otherPowders);
+            }
+
+            foreach (PowderModificator brownPowder in brownPowders)
+            {
+                brownPowder.FireworkScript = this;
+                brownPowder.attachedFirework = GetComponent<ParticleSystem>();
+                brownPowder.ApplyModifier();
             }
         }
 
