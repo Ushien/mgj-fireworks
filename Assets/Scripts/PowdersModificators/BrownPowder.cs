@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class BrownPowder : PowderModificator
 {
-    [SerializeField] float maxTimeStrength = 1f;
-    [SerializeField] float minTimeStrength = 0.8f;
     // Augmente le nombre de particules de l'explosion principale
     override public void ApplyModifier()
     {
@@ -14,16 +12,21 @@ public class BrownPowder : PowderModificator
             ParticleSystem burstSystem = subEmitters.GetSubEmitterSystem(1);
             var trails = burstSystem.trails;
             trails.enabled = true;
-            float newMin = trails.lifetime.constantMin + minTimeStrength;
-            float newMax = trails.lifetime.constantMax + maxTimeStrength;
-            trails.lifetime = new ParticleSystem.MinMaxCurve(newMin, newMax);
+            //var ratioConstant = trails.ratio.constant;
+            trails.ratio = trails.ratio + 0.15f;
+
             ParticleSystemRenderer renderer = burstSystem.GetComponent<ParticleSystemRenderer>();
             Material trailMat = new Material(renderer.material);
             renderer.trailMaterial = trailMat;
             
-            // Disable sub emitters from this burst
-            var burstSubEmitters = burstSystem.subEmitters;
-            burstSubEmitters.enabled = false;
+            // // Disable sub emitters from this burst
+            // var burstSubEmitters = burstSystem.subEmitters;
+            // burstSubEmitters.enabled = false;
+            
+            // Disable trail
+            ParticleSystem trailSubEmitter = burstSystem.subEmitters.GetSubEmitterSystem(0);
+            var emission = trailSubEmitter.emission;
+            emission.rateOverTime = 0f;
         }
 
     }

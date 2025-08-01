@@ -9836,8 +9836,10 @@ MonoBehaviour:
   attachedFirework: {fileID: 420124946508670312}
   powderList: []
   colorList: []
+  rainbowAmount: 0
   finalColor: {x: 1, y: 1, z: 1}
   fireworkMaterial: {fileID: 2100000, guid: 30a21a739a904074b8dc5da8cf4933e6, type: 2}
+  rainbowMaterial: {fileID: 2100000, guid: 34603da5667aafd4bb784419fa092951, type: 2}
   emissive: 10
 --- !u!114 &1688633067605032858
 MonoBehaviour:
@@ -9969,11 +9971,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6003737343460530987, guid: 76373b868592a52428c39d2c01b13b67, type: 3}
       propertyPath: TrailModule.ratio
-      value: 0.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6003737343460530987, guid: 76373b868592a52428c39d2c01b13b67, type: 3}
       propertyPath: NoiseModule.enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6003737343460530987, guid: 76373b868592a52428c39d2c01b13b67, type: 3}
       propertyPath: TrailModule.enabled
@@ -10000,6 +10002,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6003737343460530987, guid: 76373b868592a52428c39d2c01b13b67, type: 3}
+      propertyPath: CustomDataModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6003737343460530987, guid: 76373b868592a52428c39d2c01b13b67, type: 3}
       propertyPath: InitialModule.rotation3D
       value: 0
       objectReference: {fileID: 0}
@@ -10021,7 +10027,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6003737343460530987, guid: 76373b868592a52428c39d2c01b13b67, type: 3}
       propertyPath: TrailModule.lifetime.scalar
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6003737343460530987, guid: 76373b868592a52428c39d2c01b13b67, type: 3}
       propertyPath: ShapeModule.alignToDirection
@@ -10057,7 +10063,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6003737343460530987, guid: 76373b868592a52428c39d2c01b13b67, type: 3}
       propertyPath: TrailModule.lifetime.minScalar
-      value: 0
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 6003737343460530987, guid: 76373b868592a52428c39d2c01b13b67, type: 3}
       propertyPath: TrailModule.inheritParticleColor

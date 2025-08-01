@@ -14,8 +14,10 @@ namespace ShootingSystem {
         [SerializeField]
         private List<PowderModificator> powderList;
         public List<float> colorList;
+        public int rainbowAmount = 0;
         public Vector3 finalColor = new Vector3 (0f, 0f, 0f);
         public Material fireworkMaterial;
+        public Material rainbowMaterial;
         public float emissive = 5f;
 
 
@@ -95,14 +97,22 @@ namespace ShootingSystem {
             float tol = 0.1f;
             if(colorFloat == 0f)
                 tol = 0.04f;
-            Color randomColor = RandomSaturatedColor(colorFloat - tol, colorFloat + tol);
 
             // Apply color to main firework system
             var subEmitters = attachedFirework.subEmitters;
 
             // Trail system
             ParticleSystem trailPS = subEmitters.GetSubEmitterSystem(0);
-            ApplyColorToSystem(trailPS, randomColor);
+            
+            if(rainbowAmount > 0)
+            {
+                ApplyRainbowColor(trailPS, colorFloat, tol);
+            }
+            else
+            {
+                Color randomColor = RandomSaturatedColor(colorFloat - tol, colorFloat + tol);
+                ApplyColorToSystem(trailPS, randomColor);
+            }
 
             // Only for the main explosion firework
             if (attachedFirework.name == "Fireworks(Clone)")
@@ -132,6 +142,15 @@ namespace ShootingSystem {
                 matInstance.SetColor("_EmissionColor", color * emissive); // Make sure emission is enabled on the shader
                 renderer.material = matInstance;
             }
+        }
+
+        private void ApplyRainbowColor(ParticleSystem ps, float hueFloat, float tolerance)
+        {
+            ParticleSystemRenderer renderer = ps.GetComponent<ParticleSystemRenderer>();
+            Material matInstance = new Material(rainbowMaterial);
+            matInstance.SetFloat("Hue", hueFloat);
+            matInstance.SetFloat("tol", tolerance + 0.1f * (rainbowAmount-1));
+            renderer.material = matInstance;
         }
 
 
