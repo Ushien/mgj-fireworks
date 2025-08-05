@@ -1610,8 +1610,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecaa83ac38973d343b13ad1cbced3309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireworkAudioManager: {fileID: 1811483869}
   powderCamera: {fileID: 1495088153}
+  index: 0
   rotSpeed: 1
   returnSpeed: 5
 --- !u!212 &555183061
@@ -1924,8 +1924,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecaa83ac38973d343b13ad1cbced3309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireworkAudioManager: {fileID: 1811483869}
   powderCamera: {fileID: 1495088153}
+  index: 0
   rotSpeed: 1
   returnSpeed: 5
 --- !u!212 &648480846
@@ -2050,8 +2050,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecaa83ac38973d343b13ad1cbced3309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireworkAudioManager: {fileID: 1811483869}
   powderCamera: {fileID: 1495088153}
+  index: 0
   rotSpeed: 1
   returnSpeed: 5
 --- !u!212 &734112813
@@ -2210,8 +2210,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecaa83ac38973d343b13ad1cbced3309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireworkAudioManager: {fileID: 1811483869}
   powderCamera: {fileID: 1495088153}
+  index: 0
   rotSpeed: 1
   returnSpeed: 5
 --- !u!65 &756905237
@@ -2385,7 +2385,6 @@ MonoBehaviour:
   sandVolume: 0.5
   flux: 2000
   powderCamera: {fileID: 1495088153}
-  zDistanceFromCamera: 10
 --- !u!1 &833792146
 GameObject:
   m_ObjectHideFlags: 0
@@ -2540,8 +2539,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecaa83ac38973d343b13ad1cbced3309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireworkAudioManager: {fileID: 1811483869}
   powderCamera: {fileID: 1495088153}
+  index: 0
   rotSpeed: 1
   returnSpeed: 5
 --- !u!212 &835266809
@@ -3095,8 +3094,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecaa83ac38973d343b13ad1cbced3309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireworkAudioManager: {fileID: 1811483869}
   powderCamera: {fileID: 1495088153}
+  index: 0
   rotSpeed: 1
   returnSpeed: 5
 --- !u!212 &939042810
@@ -3588,7 +3587,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1945249131}
         m_TargetAssemblyTypeName: ShutThemeSound, Assembly-CSharp
-        m_MethodName: ShutSound
+        m_MethodName: switchSounds
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3737,8 +3736,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecaa83ac38973d343b13ad1cbced3309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireworkAudioManager: {fileID: 1811483869}
   powderCamera: {fileID: 1495088153}
+  index: 0
   rotSpeed: 1
   returnSpeed: 5
 --- !u!65 &1070649393
@@ -3895,8 +3894,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecaa83ac38973d343b13ad1cbced3309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireworkAudioManager: {fileID: 1811483869}
   powderCamera: {fileID: 1495088153}
+  index: 0
   rotSpeed: 1
   returnSpeed: 5
 --- !u!65 &1133518527
@@ -4315,8 +4314,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecaa83ac38973d343b13ad1cbced3309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireworkAudioManager: {fileID: 1811483869}
   powderCamera: {fileID: 1495088153}
+  index: 0
   rotSpeed: 1
   returnSpeed: 5
 --- !u!212 &1211620354
@@ -4703,8 +4702,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecaa83ac38973d343b13ad1cbced3309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireworkAudioManager: {fileID: 1811483869}
   powderCamera: {fileID: 1495088153}
+  index: 0
   rotSpeed: 1
   returnSpeed: 5
 --- !u!212 &1283982455
@@ -4916,8 +4915,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecaa83ac38973d343b13ad1cbced3309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireworkAudioManager: {fileID: 1811483869}
   powderCamera: {fileID: 1495088153}
+  index: 0
   rotSpeed: 1
   returnSpeed: 5
 --- !u!212 &1383314227
@@ -5205,6 +5204,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1823126646}
         m_TargetAssemblyTypeName: CameraManager, Assembly-CSharp
         m_MethodName: SwitchCamera
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1945249131}
+        m_TargetAssemblyTypeName: ShutThemeSound, Assembly-CSharp
+        m_MethodName: ShutSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5708,6 +5719,18 @@ MonoBehaviour:
       - m_Target: {fileID: 793653099}
         m_TargetAssemblyTypeName: MixingManager, Assembly-CSharp
         m_MethodName: ResetCharge
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1945249131}
+        m_TargetAssemblyTypeName: ShutThemeSound, Assembly-CSharp
+        m_MethodName: useSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11263,8 +11286,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecaa83ac38973d343b13ad1cbced3309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireworkAudioManager: {fileID: 1811483869}
   powderCamera: {fileID: 1495088153}
+  index: 0
   rotSpeed: 1
   returnSpeed: 5
 --- !u!212 &1746126679
@@ -12320,6 +12343,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   themeSound: {fileID: 1945249129}
   fadeDuration: 1
+  themeAtelier: {fileID: 8300000, guid: 1dd3f29cfc4cb524e95bb6c5b6be2da4, type: 3}
 --- !u!1 &1967419546
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,7 +16,7 @@ public class PowderManager : MonoBehaviour
     [SerializeField]
     private float sandVolume = 0.5f;
     [SerializeField]
-    private int flux = 2000;
+    public int flux = 2000;
 
     [Header("Camera")]
     [SerializeField]
