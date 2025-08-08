@@ -18,6 +18,7 @@ namespace ShootingSystem {
         public Vector3 finalColor = new Vector3 (0f, 0f, 0f);
         public Material fireworkMaterial;
         public Material rainbowMaterial;
+        public Material fullRainbowMaterial;
         public float rainbowTol = 0.3f;
         public float emissive = 5f;
         public float speed = 3f;
@@ -65,10 +66,7 @@ namespace ShootingSystem {
                 powder.ApplyModifier();
             }
 
-            if(colorList.Count > 0)
-            {
-                ChangeFinalColor();
-            }
+            ChangeFinalColor();
 
             foreach (PowderModificator purplePowder in purplePowders)
             {
@@ -95,9 +93,14 @@ namespace ShootingSystem {
 
         public void ChangeFinalColor()
         {
-            float colorFloat = colorList[Random.Range(0, colorList.Count)]; // pick une couleur au pif 
+            float colorFloat = 1f;
+            if (colorList.Count > 0)
+            {
+                colorFloat = colorList[Random.Range(0, colorList.Count)]; // pick une couleur au pif 
+            }
+
             float tol = 0.1f;
-            if(colorFloat == 0f)
+            if(colorList.Count > 0)
             {
                 rainbowTol = 0.1f;
                 tol = 0.04f;
@@ -111,12 +114,22 @@ namespace ShootingSystem {
             
             if(rainbowAmount > 0)
             {
-                ApplyRainbowColor(trailPS, colorFloat, tol);
+                if (colorList.Count > 0)
+                {
+                    ApplyRainbowColor(trailPS, colorFloat, tol, rainbowMaterial);
+                }
+                else
+                {
+                    ApplyRainbowColor(trailPS, colorFloat, tol, fullRainbowMaterial);
+                }  
             }
             else
             {
-                Color randomColor = RandomSaturatedColor(colorFloat - tol, colorFloat + tol);
-                ApplyColorToSystem(trailPS, randomColor);
+                if (colorList.Count > 0)
+                {
+                    Color randomColor = RandomSaturatedColor(colorFloat - tol, colorFloat + tol);
+                    ApplyColorToSystem(trailPS, randomColor);
+                }
             }
 
             // Only for the main explosion firework
@@ -149,10 +162,10 @@ namespace ShootingSystem {
             }
         }
 
-        private void ApplyRainbowColor(ParticleSystem ps, float hueFloat, float tolerance)
+        private void ApplyRainbowColor(ParticleSystem ps, float hueFloat, float tolerance, Material rainbowMaterialToApply)
         {
             ParticleSystemRenderer renderer = ps.GetComponent<ParticleSystemRenderer>();
-            Material matInstance = new Material(rainbowMaterial);
+            Material matInstance = new Material(rainbowMaterialToApply);
             matInstance.SetFloat("_Hue", hueFloat);
             matInstance.SetFloat("_tol", rainbowTol);
             matInstance.SetFloat("_Speed", speed*rainbowAmount);

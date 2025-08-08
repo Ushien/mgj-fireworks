@@ -34,8 +34,6 @@ public class FireworkAudioManager : MonoBehaviour
     public void PlaySound(AudioClip clip)
     {
         audioSource.PlayOneShot(clip);
-        character1Animator.Play("CharacterJump");
-        character2Animator.Play("CharacterJump");
     }
 
     public void PlayExplosionSound()
@@ -46,6 +44,8 @@ public class FireworkAudioManager : MonoBehaviour
             AudioClip randomClip = explosionSounds[randomIndex];
             PlaySound(randomClip);
         }
+        character1Animator.Play("CharacterJump");
+        character2Animator.Play("CharacterJump");
     }
 
     public void PlaySubExplosionSound()
