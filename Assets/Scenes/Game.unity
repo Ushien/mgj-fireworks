@@ -201,7 +201,7 @@ Transform:
   m_GameObject: {fileID: 49864377}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.05216163, w: 0.9986387}
-  m_LocalPosition: {x: 0.96375, y: -0.07099996, z: -0.21750069}
+  m_LocalPosition: {x: 0.969, y: -0.115, z: -0.21750069}
   m_LocalScale: {x: 0.18699262, y: 0.20043509, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -817,13 +817,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 240125323}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.026176924, w: 0.99965733}
+  m_LocalRotation: {x: -0, y: -0, z: 0.01758239, w: 0.99984545}
   m_LocalPosition: {x: 0.43000007, y: -0.101999715, z: -0.21750069}
   m_LocalScale: {x: 0.18737167, y: 0.20010965, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1049895311}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 3}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 2.015}
 --- !u!82 &240125326
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2752,8 +2752,19 @@ MonoBehaviour:
   - {fileID: 240125323}
   - {fileID: 49864377}
   - {fileID: 483072117}
-  flagMulti: {fileID: 21300000, guid: b164e9c1adeb31c4997e3102a683ef7e, type: 3}
-  flagNormal: {fileID: 21300000, guid: 1106db1a06cbb32489e6fa03a3d95899, type: 3}
+  flagsSprites:
+  - {fileID: -5062929915437831559, guid: b4963ef503461164b8e8810923ecb7e7, type: 3}
+  - {fileID: -4910047767501031062, guid: 88bb562a0a82834418be3dda394c6e2b, type: 3}
+  - {fileID: 2457504345375065158, guid: 8e32af05dae239b418386c414c7524e9, type: 3}
+  - {fileID: 840386900377456715, guid: a5ca3fbd4a4e2ca4ea94cfeb0d5afc15, type: 3}
+  - {fileID: -752685252126138145, guid: 817fe5d5485a1734eb635cf2833a8369, type: 3}
+  - {fileID: -2444873731932876728, guid: c26eed3a64b4bf6409b6ae7f5e2c8f79, type: 3}
+  - {fileID: 1616869882063952942, guid: 9d92a9d69d0edb9468c6b7d469b20818, type: 3}
+  - {fileID: -5542412721126844073, guid: 273e96824941382468da8b779809aa08, type: 3}
+  - {fileID: -3400347553425405293, guid: d9279e8242071c7489a4ad93cb8bb798, type: 3}
+  - {fileID: 21300000, guid: 1106db1a06cbb32489e6fa03a3d95899, type: 3}
+  - {fileID: 867050037995817613, guid: e1b8deda8b78b4e4e914806a464349ad, type: 3}
+  - {fileID: -8112532875269828858, guid: 6697f71331c16eb4aaec26d1c490435e, type: 3}
   sandVolume: 0.5
   system: {fileID: 1690695066}
   colors:
@@ -3313,13 +3324,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 893452224}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.06575145, w: 0.99783605}
+  m_LocalRotation: {x: -0, y: -0, z: 0.041484307, w: 0.9991392}
   m_LocalPosition: {x: -0.66625, y: -0.11900029, z: -0.21750069}
   m_LocalScale: {x: 0.18669637, y: 0.20069112, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1049895311}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 7.54}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 4.755}
 --- !u!82 &893452227
 AudioSource:
   m_ObjectHideFlags: 0
@@ -12679,13 +12690,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1896630564}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0.0878512, w: 0.9961336}
+  m_LocalRotation: {x: -0, y: -0, z: -0.039736167, w: 0.99921024}
   m_LocalPosition: {x: -0.09249997, y: -0.101999715, z: -0.21750069}
   m_LocalScale: {x: 0.18607497, y: 0.20123288, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1049895311}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -10.08}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -4.555}
 --- !u!82 &1896630567
 AudioSource:
   m_ObjectHideFlags: 0
@@ -12864,13 +12875,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1904861895}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0.043619405, w: 0.9990483}
+  m_LocalRotation: {x: -0, y: -0, z: -0.027290784, w: 0.9996276}
   m_LocalPosition: {x: -1.2, y: -0.102999166, z: -0.21750069}
   m_LocalScale: {x: 0.18714459, y: 0.2003043, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1049895311}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -5}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -3.128}
 --- !u!82 &1904861898
 AudioSource:
   m_ObjectHideFlags: 0

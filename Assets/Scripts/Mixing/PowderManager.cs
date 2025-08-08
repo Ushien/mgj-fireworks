@@ -30,8 +30,7 @@ public class PowderManager : MonoBehaviour
     [Header("Instantiation des drapeaux")]
     public Transform meche;
     public List<GameObject> flags;
-    public Sprite flagMulti;
-    public Sprite flagNormal;
+    public List<Sprite> flagsSprites;
 
     [Header("Poudre PS et couleurs")]
     [SerializeField]
@@ -182,15 +181,8 @@ public class PowderManager : MonoBehaviour
         
         // rainbow flag
         // ------------
-        if(Index == 7)
-        {
-            flags[charge].GetComponent<SpriteRenderer>().sprite = flagMulti;
-            flags[charge].GetComponent<Renderer>().material.color = PowderManager.Instance.colors[9];
-        }
-        else{
-            flags[charge].GetComponent<SpriteRenderer>().sprite = flagNormal;
-            flags[charge].GetComponent<Renderer>().material.color = PowderManager.Instance.colors[Index];
-            }
+
+        flags[charge].GetComponent<SpriteRenderer>().sprite = flagsSprites[Index];
         charge++;
         
         if(charge == maxCharge){
