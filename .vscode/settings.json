@@ -66,5 +66,5 @@
     "explorer.fileNesting.patterns": {
         "*.sln": "*.csproj"
     },
-    "dotnet.defaultSolution": "melon_game_jam_firework.sln"
+    "dotnet.defaultSolution": "mgj-fireworks.sln"
 }

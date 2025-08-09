@@ -102,7 +102,7 @@ namespace ShootingSystem {
             float tol = 0.1f;
             if(colorList.Count > 0)
             {
-                rainbowTol = 0.1f;
+                //rainbowTol = 0.1f;
                 tol = 0.04f;
             }
 
