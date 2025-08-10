@@ -5217,8 +5217,8 @@
     "m_ObjectId": "8b8efe1e3a9c403caea9a7ba23104799",
     "m_Title": "Kx - Wt",
     "m_Position": {
-        "x": -1877.9998779296875,
-        "y": -1043.9998779296875
+        "x": -1878.0,
+        "y": -1044.0
     }
 }
 
@@ -5364,7 +5364,7 @@
     "m_Title": "delays",
     "m_Position": {
         "x": -2229.0,
-        "y": 236.99996948242188
+        "y": 237.0
     }
 }
 
@@ -6751,7 +6751,7 @@
     "m_Title": "BASE COLOR",
     "m_Position": {
         "x": -593.0,
-        "y": 603.9999389648438
+        "y": 604.0
     }
 }
 
@@ -6966,7 +6966,7 @@
     "m_ObjectId": "cc79ab158b9846b0a7851e0969ae406d",
     "m_Title": "Time",
     "m_Position": {
-        "x": -2492.999755859375,
+        "x": -2493.0,
         "y": 477.0
     }
 }
@@ -7412,8 +7412,8 @@
     "m_ObjectId": "db7e0c2baf714d5887ea9e2e4c21896e",
     "m_Title": "Kx - Wt",
     "m_Position": {
-        "x": -2011.9998779296875,
-        "y": -202.00001525878907
+        "x": -2012.0,
+        "y": -202.0
     }
 }
 
@@ -7577,8 +7577,8 @@
     "m_ObjectId": "e218c7dbcad4445684112105f7e68581",
     "m_Title": "NOISE Method",
     "m_Position": {
-        "x": -992.9999389648438,
-        "y": 236.99996948242188
+        "x": -993.0,
+        "y": 237.0
     }
 }
 
@@ -7774,7 +7774,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "X",
     "m_StageCapability": 3,
-    "m_Value": 1.0,
+    "m_Value": 3.299999952316284,
     "m_DefaultValue": 0.0,
     "m_Labels": []
 }
