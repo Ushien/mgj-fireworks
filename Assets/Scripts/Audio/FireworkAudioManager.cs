@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class FireworkAudioManager : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class FireworkAudioManager : MonoBehaviour
 
     [SerializeField] private Animator character1Animator;
     [SerializeField] private Animator character2Animator;
+    [SerializeField] private AudioMixerGroup fireworksMixerGroup;
+
 
     private void Start()
     {
@@ -33,7 +36,18 @@ public class FireworkAudioManager : MonoBehaviour
 
     public void PlaySound(AudioClip clip)
     {
-        audioSource.PlayOneShot(clip);
+        // On crée un nouveau component (idéalement, il faudrait un pool)
+        AudioSource tempSource = gameObject.AddComponent<AudioSource>();
+
+        // Settings du nouveau AudioSource
+        tempSource.volume = 0.3f;
+        tempSource.spatialBlend = 0f;
+        tempSource.playOnAwake = false;
+        tempSource.outputAudioMixerGroup = fireworksMixerGroup;
+
+        // On joue le clip, et on détruit après clip.length
+        tempSource.PlayOneShot(clip);
+        Destroy(tempSource, clip.length);
     }
 
     public void PlayExplosionSound()
